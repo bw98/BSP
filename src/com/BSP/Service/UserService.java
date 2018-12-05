@@ -6,12 +6,27 @@ import com.BSP.bean.User;
 public class Userservice {
     UserDAO userDAO = new UserDAO();
 
-    public void regist (User user) throws UserException{
+    public boolean regist (User user) {
         User u = userDAO.findUserByName(user);
         if (u != null) {
-            throw new UserException("用户名" + u.getUserName() + "已经存在!!!");
+            return false;
         }
         userDAO.addUser(user);
+        return true;
     }
 
+    public int login (User user) {
+        User u = userDAO.findUserByName(user);
+        if (u == null) {
+            return 2;
+        }
+        if (!user.getPassword().equals(u.getPassword())) {
+            return 1;
+        }
+        if (u.getUserName() == "admin") {
+            return 4;
+        }
+
+        return 3;
+    }
 }

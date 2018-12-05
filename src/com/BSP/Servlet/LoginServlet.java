@@ -1,6 +1,7 @@
 package com.BSP.Servlet;
 
 import com.BSP.bean.User;
+import com.BSP.service.Userservice;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,39 +13,14 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
-		/*
-		 * 将前端数据存入_user中
-		 * 调用userservice的login方法
-		 * 如果正常则把信息存入session保持登陆状态
-		 * 如果异常则将错误信息存储到request域中并转发回登录界面
-		 */
-		
-		User _user=new User(name, password, tel, status, id);
-		_user.setPassword(request.getParameter("password"));
-		
-		 
-		/* UserService userservice=new UserService();
-		try {
-			User user=userservice.login(_user);
-			request.getSession().setAttribute("SessionUser",user);
-			if((user.getUsername()).equals("admin")){
-				response.getWriter().print(1);
-			}else{
-				System.out.println("11111111111111111111");
-			response.getWriter().print(2);
-			}
-			
-			} catch (UserException e) {
-			request.setAttribute("error",e.getMessage());;
-			response.getWriter().print(3);
-		}*/
-		 
-		 
-		 
-	}
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+
+        User u = new User(req.getParameter("name"), req.getParameter("password"), req.getParameter("phonenum"));
+        Userservice userService = new Userservice();
+		int code = userService.login(u);
+        resp.getWriter().print(code);
+    }
 
 }
