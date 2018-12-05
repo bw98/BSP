@@ -1,12 +1,12 @@
-package com.BSP.service;
+package com.BSP.Service;
 
 import com.BSP.DAO.UserDAO;
 import com.BSP.bean.User;
 
-public class Userservice {
+public class UserService {
     UserDAO userDAO = new UserDAO();
 
-    public boolean regist (User user) {
+    public boolean regist(User user) {
         User u = userDAO.findUserByName(user);
         if (u != null) {
             return false;
@@ -15,7 +15,7 @@ public class Userservice {
         return true;
     }
 
-    public int login (User user) {
+    public int login(User user) {
         User u = userDAO.findUserByName(user);
         if (u == null) {
             return 2;

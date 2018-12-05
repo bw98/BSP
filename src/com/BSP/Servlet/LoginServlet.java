@@ -1,7 +1,7 @@
 package com.BSP.Servlet;
 
 import com.BSP.bean.User;
-import com.BSP.service.Userservice;
+import com.BSP.Service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
 
         User u = new User(req.getParameter("name"), req.getParameter("password"), req.getParameter("phonenum"));
-        Userservice userService = new Userservice();
+        UserService userService = new UserService();
 		int code = userService.login(u);
         resp.getWriter().print(code);
     }
