@@ -28,7 +28,8 @@
   </environments>
 
   <mappers>
-    <mapper resource="com/BSP/config/User.xml"/>
+    <mapper resource="config/User.xml"/>
+    <mapper resource="config/Book.xml"/>
   </mappers>
 
 </configuration>

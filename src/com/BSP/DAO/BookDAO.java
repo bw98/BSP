@@ -53,7 +53,7 @@ public class BookDAO {
         Book book=null;
         try {
             sqlsession=DB.getSqlsession();
-            book=sqlsession.selectOne("User.findbook","");
+            book=sqlsession.selectOne("Book.findbook","");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

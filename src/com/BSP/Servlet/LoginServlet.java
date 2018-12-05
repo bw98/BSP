@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 		 * 如果异常则将错误信息存储到request域中并转发回登录界面
 		 */
 		
-		User _user=new User();
+		User _user=new User(name, password, tel, status, id);
 		_user.setPassword(request.getParameter("password"));
 		
 		 

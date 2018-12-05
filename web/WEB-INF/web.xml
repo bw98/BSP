@@ -5,12 +5,20 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>regist</servlet-name>
+        <servlet-class>com.BSP.Servlet.RegistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>regist</servlet-name>
+        <url-pattern>/RegistServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>login</servlet-name>
         <servlet-class>com.BSP.Servlet.LoginServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>login</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 

@@ -1,40 +1,60 @@
 package com.BSP.bean;
 
 public class User {
-	private String name;
-	private String password;
-	private int status;
-	private String id;
+    private String userName;
+    private String password;
+    private String tel;
+    private int status;
+    private String id;
 
-	public String getName() {
-		return name;
-	}
+    public User() {
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public User(String name, String password, String tel) {
+        this.userName = name;
+        this.password = password;
+        this.tel = tel;
+        this.status = 1;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
+
+    public void setUserName(String name) {
+        this.userName = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
