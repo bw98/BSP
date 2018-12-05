@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8bbe440-95a8-4d45-963c-b9396dcce91e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BSP_ear_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BSP_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BSP_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BSP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BSP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/DAO/BookDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/DAO/UserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/DAO/database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/Filter/HeaderFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/Service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/Servlet/LoginServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/bean/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/bean/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/config/Configuration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSP/com/BSP/config/Configuration.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BSP/com/BSP/config/User.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BSP/com/BSP/config/User.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/BSP/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/BSP/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/BSP/Servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/BSP/Servlet/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/BSP/Servlet/RegistServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/BSP/Servlet/RegistServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f8bbe440-95a8-4d45-963c-b9396dcce91e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +163,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544025082219" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544025503253" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -285,12 +265,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544024057893</updated>
-      <workItem from="1544024059984" duration="849000" />
+      <workItem from="1544024059984" duration="939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="849000" />
+    <option name="totallyTimeSpent" value="939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
