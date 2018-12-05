@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12f73710-1c1d-4b2b-b180-177da2d1bd63" name="Default" comment="" />
+    <list default="true" id="12f73710-1c1d-4b2b-b180-177da2d1bd63" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/artifacts/BSP_ear_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/artifacts/BSP_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/BSP.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/META-INF/application.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/DAO/BookDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/DAO/UserDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/DAO/database.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/Filter/HeaderFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/Service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/Servlet/LoginServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/bean/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/bean/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/config/Configuration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/out/production/BSP/com/BSP/config/User.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/DAO/BookDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/DAO/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/DAO/database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/Filter/HeaderFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/Service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/Servlet/LoginServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/bean/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/bean/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/config/Configuration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/src/com/BSP/config/User.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/commons-beanutils-1.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/commons-collections-3.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/commons-dbutils-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/commons-lang-2.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/ezmorph-1.0.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/mybatis-3.4.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSP/web/index.jsp" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +79,7 @@
       <file leaf-file-name="UserDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/BSP/DAO/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="388">
               <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
             </state>
           </provider>
@@ -48,8 +88,8 @@
       <file leaf-file-name="BookDAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/BSP/DAO/BookDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="168">
+              <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,8 +109,8 @@
       <file leaf-file-name="Configuration.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/BSP/config/Configuration.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+            <state relative-caret-position="158">
+              <caret line="22" column="89" selection-start-line="22" selection-start-column="89" selection-end-line="22" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -171,8 +211,8 @@
         <option value="$PROJECT_DIR$/src/com/BSP/Service/UserService.java" />
         <option value="$PROJECT_DIR$/src/com/BSP/DAO/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/com/BSP/DAO/database.java" />
-        <option value="$PROJECT_DIR$/src/com/BSP/config/Configuration.xml" />
         <option value="$PROJECT_DIR$/src/com/BSP/config/User.xml" />
+        <option value="$PROJECT_DIR$/src/com/BSP/config/Configuration.xml" />
         <option value="$PROJECT_DIR$/src/com/BSP/DAO/BookDAO.java" />
       </list>
     </option>
@@ -713,24 +753,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/BSP/DAO/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/BSP/Service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/BSP/config/Configuration.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -741,10 +767,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/BSP/DAO/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/BSP/config/Configuration.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="22" column="89" selection-start-line="22" selection-start-column="89" selection-end-line="22" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/BSP/DAO/BookDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="168">
+          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

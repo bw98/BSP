@@ -26,7 +26,7 @@ public class BookDAO {
         }
         return booklist;
     }
-
+   
     //获得当前所有书籍信息
     public List<Book> queryBookList(){
         database DB=new database();
