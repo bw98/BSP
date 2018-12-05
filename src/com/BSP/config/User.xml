@@ -1,58 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="Book">
-
-  <resultMap type="com.BSP.bean.Book" id="Book">
-    <id column="ID" jdbcType="INTEGER" property="id"/>
-    <result column="name" jdbcType="CHAR" property="name"/>
-    <result column="type" jdbcType="CHAR" property="type"/>
-    <result column="author" jdbcType="CHAR" property="author"/>
-    <result column="intro" jdbcType="CHAR" property="intro"/>
-    <result column="status" jdbcType="TINYINT" property="status"/>
-    <result column="userId" jdbcType="INTEGER" property="userid"/>
-  </resultMap>
-
-  <select id="findbook" parameterType="String" resultMap="Book">
-    SELECT * FROM Book WHERE name = #{name}
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.BSP.DAO.mybatisINF.UserMapper">
+    <select id="findUserByName" parameterType="String" resultType="com.BSP.bean.User">
+    SELECT * FROM User WHERE userName = #{userName}
   </select>
 
-  <select id="page" parameterType="java.util.Map" resultMap="Book">
-    select * from Book limit #{startindex} , #{pagesize}
-  </select>
-  
-  <select id="allbook" resultMap="Book">
-    SELECT * FROM Book WHERE 1=1
-  </select>
-
-  <!--<delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
-  </delete>
-
-  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
-    INSERT INTO user
-    ( id,
-    username,
-    password,
-    administrator
-    )
-    VALUES
-    ( #{id},
-    #{username,jdbcType=VARCHAR},
-    #{password.encrypted:VARCHAR},
-    #{administrator,jdbcType=BOOLEAN}
-    )
-  </insert>
-
-  <update id="update" parameterType="UserAlias">
-    UPDATE user SET
-    username = #{username,jdbcType=VARCHAR},
-    password = #{password.encrypted,jdbcType=VARCHAR},
-    administrator = #{administrator,jdbcType=BOOLEAN}
-    WHERE
-    id = #{id,jdbcType=INTEGER}
-  </update>-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO User (userName, password, tel, status)
+        VALUE (#{userName}, #{password}, #{tel}, #{status})
+    </insert>
 
 </mapper>
