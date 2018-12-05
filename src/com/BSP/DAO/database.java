@@ -13,7 +13,7 @@ import java.io.Reader;
  * */
 public class database {
 	public SqlSession getSqlsession() throws IOException{
-		Reader reader = Resources.getResourceAsReader("config/Configuration.xml");
+		Reader reader = Resources.getResourceAsReader("com/BSP/config/Configuration.xml");
 		SqlSessionFactory sqlsessionfactory = new SqlSessionFactoryBuilder().build(reader);
 		SqlSession sqlsession=sqlsessionfactory.openSession();
 		return sqlsession;
