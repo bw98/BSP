@@ -57,4 +57,15 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String   toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", tel='" + tel + '\'' +
+                ", status=" + status +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

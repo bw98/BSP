@@ -23,7 +23,7 @@ public class UserService {
         if (!user.getPassword().equals(u.getPassword())) {
             return 1;
         }
-        if (u.getUserName() == "admin") {
+        if (u.getUserName() == "admin" && u.getPassword() == "admin") {
             return 4;
         }
 
