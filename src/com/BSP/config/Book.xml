@@ -15,8 +15,8 @@
     <result column="userId" jdbcType="INTEGER" property="userId"/>
   </resultMap>
 
-  <select id="findbook" parameterType="String" resultMap="Book">
-    SELECT * FROM Book WHERE name = #{name}
+  <select id="searchbook" parameterType="String" resultMap="Book">
+    select * from Book where name like '%${name}%'
   </select>
 
   <select id="page" parameterType="java.util.Map" resultMap="Book">

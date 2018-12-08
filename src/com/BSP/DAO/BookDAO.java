@@ -46,14 +46,15 @@ public class BookDAO {
         return booklist;
     }
 
-    //获得单个书籍信息
-    public Book findBook(){
+    //查找书籍
+    public List<Book> searchBook(String name){
         database DB=new database();
         SqlSession sqlsession=null;
+        List<Book> booklist=new ArrayList<Book>();
         Book book=null;
         try {
             sqlsession=DB.getSqlsession();
-            book=sqlsession.selectOne("Book.findbook","");
+            booklist=sqlsession.selectList("Book.searchbook",name);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -62,7 +63,7 @@ public class BookDAO {
                 sqlsession.close();
             }
         }
-        return book;
+        return booklist;
     }
 
 }
