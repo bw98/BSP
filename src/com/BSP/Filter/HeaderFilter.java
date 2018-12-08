@@ -9,7 +9,7 @@ public class HeaderFilter implements Filter{
 
 	@Override
 	public void destroy() {
-		
+
 	}
 
 	@Override
@@ -26,12 +26,12 @@ public class HeaderFilter implements Filter{
         response.setHeader("Access-Control-Expose-Headers", "*");
         response.resetBuffer();//清空输出流
         arg2.doFilter(arg0,arg1);
-        
+
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		
+
 	}
 
 }
