@@ -23,15 +23,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Page</servlet-name>
+        <servlet-name>PageServlet</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>PgaeServlet</servlet-name>
-        <servlet-class>com.BSP.Servlet.PgaeServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>Page</servlet-name>
+        <servlet-name>PageServlet</servlet-name>
         <url-pattern>/PageServlet</url-pattern>
     </servlet-mapping>
 
@@ -43,5 +39,9 @@
         <filter-name>HeaderFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
 </web-app>
