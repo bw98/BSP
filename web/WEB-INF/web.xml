@@ -26,6 +26,10 @@
         <servlet-name>Page</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PgaeServlet</servlet-name>
+        <servlet-class>com.BSP.Servlet.PgaeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Page</servlet-name>
         <url-pattern>/PageServlet</url-pattern>

@@ -12,7 +12,7 @@
     <result column="author" jdbcType="CHAR" property="author"/>
     <result column="intro" jdbcType="CHAR" property="intro"/>
     <result column="status" jdbcType="TINYINT" property="status"/>
-    <result column="userId" jdbcType="INTEGER" property="userid"/>
+    <result column="userId" jdbcType="INTEGER" property="userId"/>
   </resultMap>
 
   <select id="findbook" parameterType="String" resultMap="Book">
