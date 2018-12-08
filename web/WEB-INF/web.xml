@@ -53,4 +53,14 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>JWTFilter</filter-name>
+        <filter-class>com.BSP.Filter.JWTFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JWTFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+
+
 </web-app>

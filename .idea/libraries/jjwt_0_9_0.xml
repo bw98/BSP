@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="log4j-1.2.17">
+  <library name="jjwt-0.9.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jjwt-0.9.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
