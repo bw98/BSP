@@ -48,7 +48,6 @@ public class JWTUtil {
             Date expDate = new Date(expMills);
             builder.setExpiration(expDate);
         }
-
         return builder.compact();
     }
 

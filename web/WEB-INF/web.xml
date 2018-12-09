@@ -23,6 +23,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>updateUserPassword</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserPassword</servlet-name>
+        <url-pattern>/UpdateUserPasswordServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateUserTel</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserTelServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserTel</servlet-name>
+        <url-pattern>/UpdateUserTelServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>searchbook</servlet-name>
         <servlet-class>com.BSP.Servlet.SearchBookServlet</servlet-class>
     </servlet>

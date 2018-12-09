@@ -1,9 +1,10 @@
 package com.BSP.Servlet;
 
+import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
 import com.BSP.bean.User;
-import com.BSP.Service.UserService;
 import net.sf.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +16,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class LoginServlet extends HttpServlet {
-
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
@@ -47,10 +46,12 @@ public class LoginServlet extends HttpServlet {
                 Map<String, Object> payload = new HashMap<String, Object>();
                 payload.put("user_name", u.getUserName());
                 String token = jwtUtil.createJWT(u, 60000000, payload);
-                Map<String, String> jsonMap = new HashMap<String, String>();
-                jsonMap.put("token", token);
-                jsonMap.put("status", Integer.toString(code));
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("token", token);
+                map.put("status", Integer.toString(code));
+                JSONObject jsonMap = JSONObject.fromObject(map);
                 resp.getWriter().print(jsonMap);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,11 +1,13 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.UserService;
+import com.BSP.Util.JWTUtil;
 import com.BSP.bean.User;
+import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +17,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistServlet extends HttpServlet {
+public class UpdateUserPasswordServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
@@ -32,16 +35,26 @@ public class RegistServlet extends HttpServlet {
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
         User u = (User)JSONObject.toBean(jsonObject, User.class);
 
+        String jwt = req.getHeader("Authorization");
+        JWTUtil jwtUtil = new JWTUtil();
+        try {
+            Claims c = jwtUtil.parseJWT(jwt);
+            u.setUserName((String) c.get("user_name"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         UserService userService = new UserService();
         Map<String, String> map = new HashMap<String, String>();
 
-        if (userService.regist(u)) {
+        if (userService.updateUserPassword(u)) {
             map.put("status", "0");
-
         } else {
             map.put("status", "1");
         }
         JSONObject jsonMap = JSONObject.fromObject(map);
         resp.getWriter().print(jsonMap);
     }
+
+
 }

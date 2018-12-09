@@ -23,11 +23,38 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Page</servlet-name>
+        <servlet-name>updateUserPassword</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserPassword</servlet-name>
+        <url-pattern>/UpdateUserPasswordServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateUserTel</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserTelServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserTel</servlet-name>
+        <url-pattern>/UpdateUserTelServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>searchbook</servlet-name>
+        <servlet-class>com.BSP.Servlet.SearchBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchbook</servlet-name>
+        <url-pattern>/SearchBookServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PageServlet</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Page</servlet-name>
+        <servlet-name>PageServlet</servlet-name>
         <url-pattern>/PageServlet</url-pattern>
     </servlet-mapping>
 
@@ -39,6 +66,10 @@
         <filter-name>HeaderFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
     <filter>
         <filter-name>JWTFilter</filter-name>

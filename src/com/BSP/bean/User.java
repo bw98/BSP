@@ -15,7 +15,7 @@ public class User {
         this.userName = name;
         this.password = password;
         this.tel = tel;
-        this.status = 1;
+        this.status = 0;
     }
 
     public String getUserName() {

@@ -12,4 +12,14 @@
         VALUE (#{userName}, #{password}, #{tel}, #{status})
     </insert>
 
+    <update id="updateUserOnPassword">
+            UPDATE User SET password = #{password}
+            where userName = #{userName}
+    </update>
+
+    <update id="updateUserOntel">
+            UPDATE User SET tel = #{tel}
+            where userName = #{userName}
+    </update>
+
 </mapper>

@@ -43,4 +43,44 @@ public class UserDAO {
             }
         }
     }
+
+    public void updateUserOnPassword (User user) {
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            System.out.println("UserDAO's updateUserOnPassword: " + user.getUserName() + " "  + user.getPassword() + " " + user.getTel() + " " + user.getStatus());
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.updateUserOnPassword(user.getUserName(), user.getPassword());
+            sqlSession.commit();
+        } catch (Exception e) {
+            sqlSession.rollback();
+            e.printStackTrace();
+        } finally {
+            if(sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    public void updateUserOntel (User user) {
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            System.out.println("UserDAO's updateUserOntel: " + user.getUserName() + " "  + user.getPassword() + " " + user.getTel() + " " + user.getStatus());
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.updateUserOntel(user.getUserName(), user.getTel());
+            sqlSession.commit();
+        } catch (Exception e) {
+            sqlSession.rollback();
+            e.printStackTrace();
+        } finally {
+            if(sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+
 }
