@@ -1,25 +1,23 @@
 package com.BSP.Service;
 
 import com.BSP.DAO.UserDAO;
+import com.BSP.bean.User;
+import org.omg.CORBA.UserException;
 
 public class UserService {
 
-<<<<<<< HEAD
-   /* public void regist (User user) throws UserException{
-=======
+
     public boolean regist(User user) {
         UserDAO userDAO = new UserDAO();
->>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
         User u = userDAO.findUserByName(user);
         if (u != null) {
-            throw new UserException("用户名" + u.getUserName() + "已经存在!!!");
+            return false;
         }
         userDAO.addUser(user);
-    }*/
+        return true;
+    }
 
-<<<<<<< HEAD
-}
-=======
+
     public int login(User user) {
         UserDAO userDAO = new UserDAO();
         User u = userDAO.findUserByName(user);
@@ -59,4 +57,3 @@ public class UserService {
     }
 
 }
->>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7

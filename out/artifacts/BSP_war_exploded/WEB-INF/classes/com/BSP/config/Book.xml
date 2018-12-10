@@ -13,19 +13,34 @@
     <result column="intro" jdbcType="CHAR" property="intro"/>
     <result column="status" jdbcType="TINYINT" property="status"/>
     <result column="userId" jdbcType="INTEGER" property="userId"/>
+    <result column="reserveId" jdbcType="INTEGER" property="reserveId"/>
+    <result column="imgUrl" jdbcType="CHAR" property="imgUrl"/>
   </resultMap>
 
+  <!--模糊查找图书-->
   <select id="searchbook" parameterType="String" resultMap="Book">
     select * from Book where name like '%${name}%'
   </select>
 
+  <!--分页展示书籍-->
   <select id="page" parameterType="java.util.Map" resultMap="Book">
     select * from Book limit #{startindex} , #{pagesize}
   </select>
-  
+
+  <!--查找所有书籍-->
   <select id="allbook" resultMap="Book">
     SELECT * FROM Book WHERE 1=1
   </select>
+
+  <!--根据id查找书籍-->
+  <select id="findBookByBookId" parameterType="int" resultMap="Book">
+    select * from Book where id=#{id}
+  </select>
+
+  <!--修改图书图片的url-->
+  <update id="updateImgUrl" parameterType="java.util.Map">
+    update Book set imgUrl=#{imgUrl} where id=#{id}
+  </update>
 
   <!--<delete id="delete" parameterType="UserAlias">
     DELETE FROM user WHERE id = #{id:INTEGER}
