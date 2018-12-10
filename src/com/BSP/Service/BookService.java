@@ -15,14 +15,15 @@ public class BookService {
 
     public String uploadBookImg(String bookId, String imgBin) {
         BookDAO bookDAO = new BookDAO();
-        Book book = bookDAO.findBookByBookId(bookId);
+        int bookid = Integer.valueOf(bookId);
+        Book book = bookDAO.findBookByBookId(bookid);
         if (book == null) {
             return null;
         }
 
         String savePath = "WEB-INF/BookPhoto/" + bookId + ".jpg";
         ImgBinUtil.base64StringToImage(imgBin, bookId, savePath);
-        bookDAO.updateImgUrl(bookId, savePath);
+        bookDAO.updateImgUrl(bookid, savePath);
         return savePath;
     }
 }

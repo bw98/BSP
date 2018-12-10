@@ -6,8 +6,10 @@ public class Book {
 	private String author;
 	private String intro;
 	private int status;
-	private String id;
-	private String userId;
+	private int id;
+	private int userId;
+	private int reserveId;
+	private String imgUrl;
 
 	public String getName() {
 		return name;
@@ -49,19 +51,35 @@ public class Book {
 		this.status = status;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getUserId() {
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public int getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(int reserveId) {
+		this.reserveId = reserveId;
+	}
+
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 }
