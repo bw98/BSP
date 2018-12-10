@@ -23,6 +23,10 @@ public class BookDAO {
             booklist = sqlsession.selectList("Book.page", map);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            if(sqlsession!=null){
+                sqlsession.close();
+            }
         }
         return booklist;
     }

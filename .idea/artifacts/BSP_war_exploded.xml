@@ -2,12 +2,32 @@
   <artifact type="exploded-war" name="BSP:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/BSP_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="BSP/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="BSP" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/druid-1.1.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/ezmorph-1.0.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mybatis-3.4.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-lang-2.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/json-lib-2.4-jdk15.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-dbutils-1.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-logging-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-beanutils-1.9.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-collections-3.2.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar" />
+          <element id="file-copy" path="D:/java/lib/dt.jar" />
+          <element id="file-copy" path="D:/java/lib/tools.jar" />
+          <element id="file-copy" path="D:/java/lib/sa-jdi.jar" />
+          <element id="file-copy" path="D:/java/lib/jconsole.jar" />
+          <element id="file-copy" path="D:/java/lib/packager.jar" />
+          <element id="file-copy" path="D:/java/lib/javafx-mx.jar" />
+          <element id="file-copy" path="D:/java/lib/ant-javafx.jar" />
+          <element id="library" level="project" name="lib" />
+        </element>
       </element>
+      <element id="javaee-facet-resources" facet="BSP/web/Web" />
     </root>
   </artifact>
 </component>

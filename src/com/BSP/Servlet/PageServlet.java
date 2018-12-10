@@ -32,8 +32,6 @@ public class PageServlet extends HttpServlet {
                 List<Book> list=page.getList();
                 String json=JSONArray.fromObject(list).toString();
                   response.getWriter().print(json);
-                response.getWriter().print(1);
-                // System.out.println(json);
 
             }
 
