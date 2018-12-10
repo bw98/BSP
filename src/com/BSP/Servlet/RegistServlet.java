@@ -1,29 +1,19 @@
 package com.BSP.Servlet;
 
-<<<<<<< HEAD
-=======
 import com.BSP.Service.UserService;
 import com.BSP.bean.User;
 import net.sf.json.JSONObject;
->>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
->>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
 
 public class RegistServlet extends HttpServlet {
-<<<<<<< HEAD
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-=======
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
@@ -51,6 +41,5 @@ public class RegistServlet extends HttpServlet {
         }
         JSONObject jsonMap = JSONObject.fromObject(map);
         resp.getWriter().print(jsonMap);
->>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
     }
 }
