@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class JWTUtil {
 
-    public SecretKey generalKey(){
+    public static SecretKey generalKey(){
         String stringKey = "SDFEEdfdeFDRE";
         byte[] encodedKey = Base64.decodeBase64(stringKey);//本地的密码解码[B@152f6e2
         // 根据给定的字节数组使用AES加密算法构造一个密钥
@@ -23,14 +23,14 @@ public class JWTUtil {
         return key;
     }
 
-    public String generateSub(User sub) {
+    public static String generateSub(User sub) {
         sub.setPassword(null);
         JSONObject jsonObject = JSONObject.fromObject(sub);
         String jsonStr = jsonObject.toString();
         return jsonStr;
     }
 
-    public String createJWT(User user, long ttlMills, Map<String, Object> claims) throws Exception{
+    public static String createJWT(User user, long ttlMills, Map<String, Object> claims) throws Exception{
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         SecretKey key = generalKey();
         long nowMills = System.currentTimeMillis();
@@ -51,7 +51,7 @@ public class JWTUtil {
         return builder.compact();
     }
 
-    public Claims parseJWT(String jwtStr) throws Exception {
+    public static Claims parseJWT(String jwtStr) throws Exception {
         SecretKey key = generalKey();
         Claims claims = Jwts.parser()
                 .setSigningKey(key)

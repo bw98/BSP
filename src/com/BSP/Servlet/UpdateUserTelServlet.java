@@ -35,9 +35,8 @@ public class UpdateUserTelServlet extends HttpServlet {
         User u = (User)JSONObject.toBean(jsonObject, User.class);
 
         String jwt = req.getHeader("Authorization");
-        JWTUtil jwtUtil = new JWTUtil();
         try {
-            Claims c = jwtUtil.parseJWT(jwt);
+            Claims c = JWTUtil.parseJWT(jwt);
             u.setUserName((String) c.get("user_name"));
         } catch (Exception e) {
             e.printStackTrace();

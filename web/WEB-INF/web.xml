@@ -50,6 +50,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>uploadBookImg</servlet-name>
+        <servlet-class>com.BSP.Servlet.UploadBookImgServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadBookImg</servlet-name>
+        <url-pattern>/UploadBookImgServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PageServlet</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
