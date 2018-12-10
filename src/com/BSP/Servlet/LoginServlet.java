@@ -84,10 +84,9 @@ public class LoginServlet extends HttpServlet {
         //设置 token 并传输 json
         if ((code == 3) || (code == 4)) {
             try {
-                JWTUtil jwtUtil = new JWTUtil();
                 Map<String, Object> payload = new HashMap<String, Object>();
                 payload.put("user_name", u.getUserName());
-                String token = jwtUtil.createJWT(u, 60000000, payload);
+                String token = JWTUtil.createJWT(u, 60000000, payload);
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("token", token);
                 map.put("status", Integer.toString(code));

@@ -21,10 +21,8 @@ public class JWTFilter implements Filter {
         resp.setContentType("text/html;charset=UTF-8");
 
         String jwt = request.getHeader("Authorization");
-        JWTUtil jwtUtil = new JWTUtil();
-
         try {
-            Claims c = jwtUtil.parseJWT(jwt);
+            Claims c = JWTUtil.parseJWT(jwt);
             response.getWriter().write("User: " + c.get("user_name") + " has logged in");
             chain.doFilter(req, resp);
 
