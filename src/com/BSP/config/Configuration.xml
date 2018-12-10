@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <properties resource="druid.properties" />
+  <settings>
+    <setting name="useGeneratedKeys" value="false"/>
+    <setting name="useColumnLabel" value="true"/>
+  </settings>
+
+  <typeAliases>
+    <typeAlias type="com.BSP.DAO.DruidDataSourceFactory"
+               alias="DRUID" />
+  </typeAliases>
+
+  <!-- development : 开发模式 work : 工作模式 -->
+  <environments default="work">
+    <environment id="work">
+      <transactionManager type="JDBC" />
+      <!-- 配置数据库连接信息 -->
+      <dataSource type="DRUID">
+        <property name="driver" value="${driverClassName}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+        <property name="minIdle" value="0" />
+        <property name="maxWait" value="60000" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandonedTimeout" value="300" />
+        <property name="logAbandoned" value="false" />
+      </dataSource>
+    </environment>
+  </environments>
+
+  <mappers>
+    <mapper resource="com/BSP/config/User.xml"/>
+    <mapper resource="com/BSP/config/Book.xml"/>
+  </mappers>
+
+</configuration>
