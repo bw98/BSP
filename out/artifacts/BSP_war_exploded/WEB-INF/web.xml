@@ -23,6 +23,27 @@
     </servlet-mapping>
 
     <servlet>
+<<<<<<< HEAD
+=======
+        <servlet-name>updateUserPassword</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserPassword</servlet-name>
+        <url-pattern>/UpdateUserPasswordServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateUserTel</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateUserTelServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserTel</servlet-name>
+        <url-pattern>/UpdateUserTelServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+>>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
         <servlet-name>searchbook</servlet-name>
         <servlet-class>com.BSP.Servlet.SearchBookServlet</servlet-class>
     </servlet>
@@ -52,5 +73,18 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+<<<<<<< HEAD
+=======
+
+    <filter>
+        <filter-name>JWTFilter</filter-name>
+        <filter-class>com.BSP.Filter.JWTFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JWTFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+
+>>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
 
 </web-app>

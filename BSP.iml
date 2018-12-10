@@ -20,7 +20,13 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.0.49" level="application_server_libraries" />
+=======
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.34" level="application_server_libraries" />
+    <orderEntry type="library" exported="" name="jackson-databind-2.7.0" level="project" />
+    <orderEntry type="library" exported="" name="jjwt-0.9.0" level="project" />
+>>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -31,6 +37,7 @@
         <jarDirectory url="file://$MODULE_DIR$/web/WEB-INF/lib" recursive="false" />
       </library>
     </orderEntry>
+<<<<<<< HEAD
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -45,5 +52,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
+=======
+>>>>>>> 6fdc48eb556ee963280fedcd765b43f3caba01a7
   </component>
 </module>
