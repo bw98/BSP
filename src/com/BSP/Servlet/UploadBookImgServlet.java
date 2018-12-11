@@ -17,7 +17,7 @@ public class UploadBookImgServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-        //读入流并转换为json，最后转换为 java Bean
+        //读入流并转换为json，得到图书的ID还有jpg图像的Base64编码
         BufferedReader br = new BufferedReader(new InputStreamReader((ServletInputStream) req.getInputStream(), "utf-8"));
         StringBuffer sb = new StringBuffer("");
         String temp;
