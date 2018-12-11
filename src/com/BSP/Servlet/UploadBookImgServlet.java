@@ -27,20 +27,24 @@ public class UploadBookImgServlet extends HttpServlet {
         br.close();
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
+        System.out.println("[jsonObject]" + jsonObject.toString());
         String bookId = jsonObject.getString("bookId");
         String imgBin = jsonObject.getString("imgBin");
+        String projRealPath = req.getServletContext().getRealPath("/");
+        int startIdx = projRealPath.indexOf("BSP/");
+        projRealPath = projRealPath.substring(0, startIdx + 4);
 
         BookService bookService = new BookService();
-        String imgPath = bookService.uploadBookImg(bookId, imgBin);
+        String imgUrl = bookService.uploadBookImg(bookId, imgBin, projRealPath);
         HashMap<String, String> map = new HashMap<String, String>();
 
-        if(imgPath != null) {
+        if(imgUrl != null) {
 
-            map.put("imgPath", imgPath);
+            map.put("imgUrl", imgUrl);
             JSONObject jsonMap = JSONObject.fromObject(map);
             resp.getWriter().print(jsonMap);
         } else {
-            map.put("imgPath", "null");
+            map.put("imgUrl", "null");
             JSONObject jsonMap = JSONObject.fromObject(map);
             resp.getWriter().print(jsonMap);
         }

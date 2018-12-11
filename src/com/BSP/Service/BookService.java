@@ -3,6 +3,7 @@ package com.BSP.Service;
 import com.BSP.DAO.BookDAO;
 import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
+import org.apache.catalina.Context;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class BookService {
         return booklist;
     }
 
-    public String uploadBookImg(String bookId, String imgBin) {
+    public String uploadBookImg(String bookId, String imgBin, String projRealPath) {
         BookDAO bookDAO = new BookDAO();
         int bookid = Integer.valueOf(bookId);
         Book book = bookDAO.findBookByBookId(bookid);
@@ -21,7 +22,7 @@ public class BookService {
             return null;
         }
 
-        String savePath = "WEB-INF/BookPhoto/" + bookId + ".jpg";
+        String savePath = projRealPath + "web/WEB-INF/BookPhoto/" + bookId + ".jpg";
         ImgBinUtil.base64StringToImage(imgBin, bookId, savePath);
         bookDAO.updateImgUrl(bookid, savePath);
         return savePath;
