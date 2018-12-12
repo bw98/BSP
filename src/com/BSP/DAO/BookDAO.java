@@ -23,6 +23,7 @@ public class BookDAO {
             booklist = sqlsession.selectList("Book.page", map);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }finally{
             if(sqlsession!=null){
                 sqlsession.close();
@@ -41,6 +42,7 @@ public class BookDAO {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }finally{
             if(sqlsession!=null){
                 sqlsession.close();
@@ -60,6 +62,7 @@ public class BookDAO {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
         }finally{
             if(sqlsession!=null){
                 sqlsession.close();
@@ -77,6 +80,7 @@ public class BookDAO {
             book=sqlSession.selectOne("Book.findBookByBookId",id);
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }finally{
             if(sqlSession!=null){
                 sqlSession.close();
@@ -86,7 +90,7 @@ public class BookDAO {
     }
 
     //修改图书图片url
-    public void updateImgUrl(int id,String imgUrl){
+    public boolean updateImgUrl(int id,String imgUrl){
         SqlSession sqlSession=null;
         Map map=new HashMap();
         map.put("id",id);
@@ -94,13 +98,53 @@ public class BookDAO {
         try {
             sqlSession=DB.getSqlsession();
             sqlSession.update("Book.updateImgUrl",map);
+            sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }finally{
             if(sqlSession!=null){
                 sqlSession.close();
             }
         }
+        return true;
+    }
+
+    //增加图书
+    public int addBook(Book book){
+        SqlSession sqlSession=null;
+        int id;
+        try {
+            sqlSession=DB.getSqlsession();
+            sqlSession.insert("Book.addBook",book);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return book.getId();
+    }
+
+    //下架图书（status=4）
+    public boolean deleteBook(int id){
+        SqlSession sqlSession=null;
+        try {
+            sqlSession=DB.getSqlsession();
+            sqlSession.update("Book.deleteBook",id);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return true;
     }
 
 }

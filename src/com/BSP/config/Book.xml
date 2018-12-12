@@ -42,6 +42,16 @@
     update Book set imgUrl=#{imgUrl} where id=#{id}
   </update>
 
+  <!--增加图书-->
+  <insert id="addBook" parameterType="com.BSP.bean.Book" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO Book(name,type,author,intro,status,userId,reserveId)
+    VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId},#{reserveId})
+  </insert>
+
+  <!--下架图书（修改status=4）-->
+  <update id="deleteBook" parameterType="int">
+    update Book set status=4 where id=#{id}
+  </update>
   <!--<delete id="delete" parameterType="UserAlias">
     DELETE FROM user WHERE id = #{id:INTEGER}
   </delete>

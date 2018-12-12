@@ -13,7 +13,22 @@ public class BookService {
         return booklist;
     }
 
-    public String uploadBookImg(String bookId, String imgBin) {
+    public boolean deleteBook(int id){
+        BookDAO bookDAO=new BookDAO();
+        if(bookDAO.findBookByBookId(id)!=null){
+            bookDAO.deleteBook(id);
+        }else{
+            return false;
+        }
+        return true;
+    }
+
+    public int addBook(Book book){
+        BookDAO bookDAO = new BookDAO();
+        return bookDAO.addBook(book);
+    }
+
+    public String uploadBookImg(String bookId, String imgBin, String projRealPath) {
         BookDAO bookDAO = new BookDAO();
         int bookid = Integer.valueOf(bookId);
         Book book = bookDAO.findBookByBookId(bookid);
@@ -21,8 +36,8 @@ public class BookService {
             return null;
         }
 
-        String savePath = "WEB-INF/BookPhoto/" + bookId + ".jpg";
-        ImgBinUtil.base64StringToImage(imgBin, bookId, savePath);
+        String savePath = projRealPath + "web/WEB-INF/BookPhoto/" + bookId + ".jpg";
+        ImgBinUtil.base64StringToImage(imgBin,savePath);
         bookDAO.updateImgUrl(bookid, savePath);
         return savePath;
     }

@@ -9,6 +9,7 @@ public class UserDAO {
         database db = new database();
         SqlSession sqlSession = null;
         try {
+            sqlSession = db.getSqlsession();
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             User u = mapper.findUserByName(user.getUserName());
             return u;
@@ -27,6 +28,7 @@ public class UserDAO {
         database db = new database();
         SqlSession sqlSession = null;
         try {
+            sqlSession = db.getSqlsession();
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             mapper.addUser(user.getUserName(), user.getPassword(), user.getTel(), user.getStatus());
             sqlSession.commit();

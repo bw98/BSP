@@ -5,7 +5,7 @@ public class User {
     private String password;
     private String tel;
     private int status;
-    private String id;
+    private int id;
 
     public User() {
 
@@ -34,7 +34,7 @@ public class User {
         return status;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -54,7 +54,7 @@ public class User {
         this.status = status;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

@@ -50,21 +50,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>uploadBookImg</servlet-name>
-        <servlet-class>com.BSP.Servlet.UploadBookImgServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>uploadBookImg</servlet-name>
-        <url-pattern>/UploadBookImgServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>PageServlet</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PageServlet</servlet-name>
         <url-pattern>/PageServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletebook</servlet-name>
+        <servlet-class>com.BSP.Servlet.DeleteBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletebook</servlet-name>
+        <url-pattern>/DeleteBookServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addbook</servlet-name>
+        <servlet-class>com.BSP.Servlet.AddBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addbook</servlet-name>
+        <url-pattern>/AddBookServlet</url-pattern>
     </servlet-mapping>
 
     <filter>

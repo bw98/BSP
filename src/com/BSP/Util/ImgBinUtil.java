@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 public class ImgBinUtil {
 
     //将base64编制的二进制转化成图片并存储
-    public static void base64StringToImage(String base64String, String bookId, String path) {
+    public static void base64StringToImage(String base64String,String path) {
         try {
             byte[] bytes = Base64.decodeBase64(base64String);
             ByteArrayInputStream b = new ByteArrayInputStream(bytes);
