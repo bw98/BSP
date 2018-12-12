@@ -1,9 +1,9 @@
 .gradle
 /local.properties
-.DS_Store # only needed under mac os
 /build
 /captures
 *.iml
 .idea
 *.apk #optional
+.DS_Store # only needed under mac os
 out
