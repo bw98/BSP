@@ -41,6 +41,7 @@ public class AddBookServlet extends HttpServlet {
             projRealPath = projRealPath.substring(0, startIdx + 4);
 
             String img=request.getParameter("img");
+            System.out.println("img: " + img);
             bookService.uploadBookImg(String.valueOf(id),img, projRealPath);
 
             map.put("status",true);

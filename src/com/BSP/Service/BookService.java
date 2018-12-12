@@ -38,6 +38,7 @@ public class BookService {
         }
 
         String savePath = projRealPath + "web/WEB-INF/BookPhoto/" + bookId + ".jpg";
+        System.out.println(savePath);
         ImgBinUtil.base64StringToImage(imgBin,savePath);
         bookDAO.updateImgUrl(bookid, savePath);
         return savePath;
