@@ -1,14 +1,26 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.BSP.DAO.mybatisINF.CommentMapper">
+    <select id="selectCommentById" resultType="com.BSP.bean.Comment">
+        select * from Comment where id = #{id}
+    </select>
 
-<taglib xmlns="http://java.sun.com/xml/ns/javaee"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-        version="2.1">
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="id" parameterType="com.BSP.bean.Comment">
+        insert into Comment(content, userId, bookId)
+        VALUE (#{content}, #{userId}, #{bookId})
+    </insert>
 
-    <tlib-version>1.0</tlib-version>
-    <short-name>myshortname</short-name>
-    <uri>http://mycompany.com</uri>
+    <delete id="deleteComment">
+        update Comment set status = 1 where id = #{id}
+    </delete>
 
-    <!-- Invoke 'Generate' action to add tags or functions -->
+    <select id="selectCommentByUserId" resultType="com.BSP.bean.Comment">
+        select * from Comment where userId = #{userId} and status != 1
+    </select>
 
-</taglib>
+    <select id="selectCommentByBookId" resultType="com.BSP.bean.Comment">
+        select * from Comment where bookId = #{bookId} and status != 1
+    </select>
+</mapper>

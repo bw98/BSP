@@ -6,6 +6,13 @@ import org.omg.CORBA.UserException;
 
 public class UserService {
 
+    public int findIdByUserName(String userName) {
+        UserDAO userDAO = new UserDAO();
+        User user = new User();
+        user.setUserName(userName);
+        User u = userDAO.findUserByName(user);
+        return u.getId();
+    }
 
     public boolean regist(User user) {
         UserDAO userDAO = new UserDAO();

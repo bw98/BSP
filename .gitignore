@@ -5,5 +5,5 @@
 *.iml
 .idea
 *.apk #optional
-.DS_Store # only needed under mac os
+.DS_Store
 out

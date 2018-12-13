@@ -76,6 +76,24 @@
         <url-pattern>/AddBookServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addComment</servlet-name>
+        <servlet-class>com.BSP.Servlet.AddCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addComment</servlet-name>
+        <url-pattern>/AddCommentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteComment</servlet-name>
+        <servlet-class>com.BSP.Servlet.DeleteCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteComment</servlet-name>
+        <url-pattern>/DeleteCommentServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>HeaderFilter</filter-name>
         <filter-class>com.BSP.Filter.HeaderFilter</filter-class>
