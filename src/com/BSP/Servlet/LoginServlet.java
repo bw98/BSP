@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("token", token);
                 map.put("status", Integer.toString(code));
-                JSONObject jsonMap = JSONObject.fromObject(map);
+                String jsonMap = JSONObject.fromObject(map).toString();
                 resp.getWriter().print(jsonMap);
 
             } catch (Exception e) {

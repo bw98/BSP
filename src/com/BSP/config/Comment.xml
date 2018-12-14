@@ -16,11 +16,21 @@
         update Comment set status = 1 where id = #{id}
     </delete>
 
+    <select id="findAllComment" resultType="com.BSP.bean.Comment">
+        select * from Comment where status != 1
+    </select>
+
     <select id="selectCommentByUserId" resultType="com.BSP.bean.Comment">
         select * from Comment where userId = #{userId} and status != 1
     </select>
 
     <select id="selectCommentByBookId" resultType="com.BSP.bean.Comment">
         select * from Comment where bookId = #{bookId} and status != 1
+    </select>
+
+    <select id="pageAllComment" resultType="com.BSP.bean.Comment">
+        SELECT * FROM Comment AS a
+        RIGHT JOIN (select status, id from Comment   where status != 1 limit #{startIndex}, #{pageSize}) AS b
+        ON a.id = b.id;
     </select>
 </mapper>

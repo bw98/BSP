@@ -94,6 +94,15 @@
         <url-pattern>/DeleteCommentServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>commentPage</servlet-name>
+        <servlet-class>com.BSP.Servlet.CommentPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commentPage</servlet-name>
+        <url-pattern>/CommentPageServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>HeaderFilter</filter-name>
         <filter-class>com.BSP.Filter.HeaderFilter</filter-class>

@@ -25,7 +25,7 @@ public class Page<T> {
         }else{
             this.pageamount=amount/pagesize+1;
         }
-        this.startindex=(this.pagenum-1)*pagesize;
+        this.startindex=(this.pagenum-1)*pagesize; //(pagenum-1)为了处理数据库页码从0开始而前端页码从1开始的问题
 
         this.start=1;
         this.end=5;

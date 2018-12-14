@@ -3,9 +3,11 @@ package com.BSP.Servlet;
 import com.BSP.Service.CommentService;
 import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
+import com.BSP.Util.JsonDateValueProcessor;
 import com.BSP.bean.Comment;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -16,8 +18,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,12 +46,12 @@ public class AddCommentServlet extends HttpServlet {
             Date now = new Date(nowMills);
             comment.setCreateTime(now);
             commentService.addComment(comment);
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("content", comment.getContent());
-            map.put("id", Integer.toString(comment.getId()));
-            map.put("createTime", comment.getCreateTime().toString());
-            JSONObject jsonMap = JSONObject.fromObject(map);
-            resp.getWriter().print(jsonMap);
+
+            JsonConfig config = new JsonConfig();
+            JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
+            config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
+            String json = JSONObject.fromObject(comment, config).toString();
+            resp.getWriter().print(json);
         } catch (Exception e) {
             e.printStackTrace();
         }

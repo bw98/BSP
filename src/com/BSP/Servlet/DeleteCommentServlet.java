@@ -46,7 +46,7 @@ public class DeleteCommentServlet extends HttpServlet {
                 resp.getWriter().print(jsonMap);
             } else {
                 map.put("status", "false");
-                JSONObject jsonMap = JSONObject.fromObject(map);
+                String jsonMap = JSONObject.fromObject(map).toString();
                 resp.getWriter().print(jsonMap);
             }
         } catch (Exception e) {

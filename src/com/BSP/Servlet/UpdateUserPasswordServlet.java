@@ -51,7 +51,7 @@ public class UpdateUserPasswordServlet extends HttpServlet {
         } else {
             map.put("status", "1");
         }
-        JSONObject jsonMap = JSONObject.fromObject(map);
+        String jsonMap = JSONObject.fromObject(map).toString();
         resp.getWriter().print(jsonMap);
     }
 
