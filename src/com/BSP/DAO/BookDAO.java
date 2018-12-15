@@ -74,13 +74,12 @@ public class BookDAO {
     //根据id查找书籍
     public  Book findBookByBookId(int id){
         SqlSession sqlSession=null;
-        Book book = null;
+        Book book=null;
         try {
             sqlSession = DB.getSqlsession();
             book=sqlSession.selectOne("Book.findBookByBookId",id);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }finally{
             if(sqlSession!=null){
                 sqlSession.close();
@@ -113,7 +112,6 @@ public class BookDAO {
     //增加图书
     public int addBook(Book book){
         SqlSession sqlSession=null;
-        int id;
         try {
             sqlSession=DB.getSqlsession();
             sqlSession.insert("Book.addBook",book);
@@ -129,12 +127,15 @@ public class BookDAO {
         return book.getId();
     }
 
-    //下架图书（status=4）
-    public boolean deleteBook(int id){
+    //修改status( 0在架 1待审核 2已预约 3已借 4下架)
+    public boolean updateBookStatus(int id,int status){
         SqlSession sqlSession=null;
+        Map map=new HashMap();
+        map.put("id",id);
+        map.put("status",status);
         try {
             sqlSession=DB.getSqlsession();
-            sqlSession.update("Book.deleteBook",id);
+            sqlSession.update("Book.deleteBook",map);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();

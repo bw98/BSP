@@ -86,6 +86,60 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>addreserve</servlet-name>
+        <servlet-class>com.BSP.Servlet.AddReserveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addreserve</servlet-name>
+        <url-pattern>/addreserve</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletereserve</servlet-name>
+        <servlet-class>com.BSP.Servlet.DeleteReserveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletereserve</servlet-name>
+        <url-pattern>/deletereserve</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allreserve</servlet-name>
+        <servlet-class>com.BSP.Servlet.AllReserveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allreserve</servlet-name>
+        <url-pattern>/allreserve</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allrent</servlet-name>
+        <servlet-class>com.BSP.Servlet.AllRentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allrent</servlet-name>
+        <url-pattern>/allrent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addrent</servlet-name>
+        <servlet-class>com.BSP.Servlet.AddRentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addrent</servlet-name>
+        <url-pattern>/addrent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>returnbook</servlet-name>
+        <servlet-class>com.BSP.Servlet.ReturnBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>returnbook</servlet-name>
+        <url-pattern>/returnbook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>addComment</servlet-name>
         <servlet-class>com.BSP.Servlet.AddCommentServlet</servlet-class>
     </servlet>

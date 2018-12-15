@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reserve">
+
+    <!--预定图书-->
+    <insert id="reserveBook" parameterType="com.BSP.bean.Reserve" >
+    INSERT INTO Reserve(userId,bookId)
+    VALUES( #{userId},#{bookId})
+    </insert>
+
+    <!--删除预约记录状态-->
+    <update id="deleteReserve" parameterType="int">
+       update Reserve set status=1 where id=#{id}
+    </update>
+
+    <!--根据id查找记录-->
+    <select id="findReserve" parameterType="int" resultType="com.BSP.bean.Reserve">
+        select * from Reserve where id=#{id}
+    </select>
+
+    <!--根据userid查找用户自己的记录-->
+    <select id="findReserveByUserId" parameterType="int" resultType="com.BSP.bean.Reserve">
+        select * from Reserve where userId=#{userId} and status=0
+    </select>
+
+</mapper>
+

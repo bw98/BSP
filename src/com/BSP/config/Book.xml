@@ -18,7 +18,7 @@
 
   <!--模糊查找图书-->
   <select id="searchbook" parameterType="com.BSP.bean.Book" resultMap="Book">
-    select * from Book where name like '%${name}%'
+    select * from Book where name like '%${name}%' and status=0 or status=2 or status=3
   </select>
 
   <!--分页展示书籍-->
@@ -47,12 +47,12 @@
     VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId})
   </insert>
 
-  <!--下架图书（修改status=4）-->
-  <update id="deleteBook" parameterType="int">
-    update Book set status=4 where id=#{id}
+  <!--修改status( 0在架 1待审核 2已预约 3已借 4下架)-->
+  <update id="deleteBook" parameterType="java.util.Map">
+    update Book set status=#{status} where id=#{id}
   </update>
 
-  <!--修改图书状态-->
+  <!--修改图书-->
   <update id="updateBook" parameterType="com.BSP.bean.Book">
     update Book set name=#{name},
     type=#{type},
@@ -61,37 +61,7 @@
     where id=#{id}
   </update>
 
-  <!--修改预定者-->
-  <update id="updateReserve" parameterType="java.util.Map">
-    update Book set reserveId=#{reserveId} where id=#{id}
-  </update>
 
-  <!--<delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
-  </delete>
 
-  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
-    INSERT INTO user
-    ( id,
-    username,
-    password,
-    administrator
-    )
-    VALUES
-    ( #{id},
-    #{username,jdbcType=VARCHAR},
-    #{password.encrypted:VARCHAR},
-    #{administrator,jdbcType=BOOLEAN}
-    )
-  </insert>
-
-  <update id="update" parameterType="UserAlias">
-    UPDATE user SET
-    username = #{username,jdbcType=VARCHAR},
-    password = #{password.encrypted,jdbcType=VARCHAR},
-    administrator = #{administrator,jdbcType=BOOLEAN}
-    WHERE
-    id = #{id,jdbcType=INTEGER}
-  </update>-->
 
 </mapper>

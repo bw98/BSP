@@ -16,7 +16,7 @@ public class BookService {
     public boolean deleteBook(int id){
         BookDAO bookDAO=new BookDAO();
         if(bookDAO.findBookByBookId(id)!=null){
-            bookDAO.deleteBook(id);
+            bookDAO.updateBookStatus(id,4);
         }else{
             return false;
         }
