@@ -13,12 +13,11 @@
     <result column="intro" jdbcType="CHAR" property="intro"/>
     <result column="status" jdbcType="TINYINT" property="status"/>
     <result column="userId" jdbcType="INTEGER" property="userId"/>
-    <result column="reserveId" jdbcType="INTEGER" property="reserveId"/>
     <result column="imgUrl" jdbcType="CHAR" property="imgUrl"/>
   </resultMap>
 
   <!--模糊查找图书-->
-  <select id="searchbook" parameterType="String" resultMap="Book">
+  <select id="searchbook" parameterType="com.BSP.bean.Book" resultMap="Book">
     select * from Book where name like '%${name}%'
   </select>
 
@@ -44,14 +43,29 @@
 
   <!--增加图书-->
   <insert id="addBook" parameterType="com.BSP.bean.Book" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO Book(name,type,author,intro,status,userId,reserveId)
-    VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId},#{reserveId})
+    INSERT INTO Book(name,type,author,intro,status,userId)
+    VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId})
   </insert>
 
   <!--下架图书（修改status=4）-->
   <update id="deleteBook" parameterType="int">
     update Book set status=4 where id=#{id}
   </update>
+
+  <!--修改图书状态-->
+  <update id="updateBook" parameterType="com.BSP.bean.Book">
+    update Book set name=#{name},
+    type=#{type},
+    author=#{author},
+    intro=#{intro}
+    where id=#{id}
+  </update>
+
+  <!--修改预定者-->
+  <update id="updateReserve" parameterType="java.util.Map">
+    update Book set reserveId=#{reserveId} where id=#{id}
+  </update>
+
   <!--<delete id="delete" parameterType="UserAlias">
     DELETE FROM user WHERE id = #{id:INTEGER}
   </delete>

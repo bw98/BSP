@@ -8,7 +8,6 @@ public class Book {
 	private int status;
 	private int id;
 	private int userId;
-	private int reserveId;
 	private String imgUrl;
 
 	public String getName() {
@@ -65,14 +64,6 @@ public class Book {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
-	}
-
-	public int getReserveId() {
-		return reserveId;
-	}
-
-	public void setReserveId(int reserveId) {
-		this.reserveId = reserveId;
 	}
 
 	public int getUserId() {

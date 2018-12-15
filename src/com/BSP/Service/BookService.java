@@ -3,7 +3,6 @@ package com.BSP.Service;
 import com.BSP.DAO.BookDAO;
 import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
-import org.apache.catalina.Context;
 
 import java.util.List;
 
@@ -13,6 +12,7 @@ public class BookService {
         List booklist = bookDAO.searchBook(name);
         return booklist;
     }
+
     public boolean deleteBook(int id){
         BookDAO bookDAO=new BookDAO();
         if(bookDAO.findBookByBookId(id)!=null){
@@ -26,6 +26,16 @@ public class BookService {
     public int addBook(Book book){
         BookDAO bookDAO = new BookDAO();
         return bookDAO.addBook(book);
+    }
+
+    public boolean updateBook(Book book){
+        BookDAO bookDAO=new BookDAO();
+        if(bookDAO.findBookByBookId(book.getId())!=null){
+            bookDAO.updateBook(book);
+        }else{
+            return false;
+        }
+        return true;
     }
 
 

@@ -50,12 +50,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>PageServlet</servlet-name>
+        <servlet-name>page</servlet-name>
         <servlet-class>com.BSP.Servlet.PageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PageServlet</servlet-name>
-        <url-pattern>/PageServlet</url-pattern>
+        <servlet-name>page</servlet-name>
+        <url-pattern>/page</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -65,6 +65,15 @@
     <servlet-mapping>
         <servlet-name>deletebook</servlet-name>
         <url-pattern>/deletebook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updatebook</servlet-name>
+        <servlet-class>com.BSP.Servlet.UpdateBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatebook</servlet-name>
+        <url-pattern>/updatebook</url-pattern>
     </servlet-mapping>
 
     <servlet>

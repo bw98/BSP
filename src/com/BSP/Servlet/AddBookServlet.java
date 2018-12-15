@@ -1,16 +1,17 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.BookService;
-import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,19 +20,27 @@ public class AddBookServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
+        BufferedReader br = new BufferedReader(new InputStreamReader((ServletInputStream) request.getInputStream(), "utf-8"));
+        StringBuffer sb = new StringBuffer("");
+        String temp;
+        while ((temp = br.readLine()) != null) {
+            sb.append(temp);
+        }
+        br.close();
+        String jsonStr = sb.toString();
+        JSONObject jsonObject = JSONObject.fromObject(jsonStr);
+
         Book book=new Book();
         Map map=new HashMap();
-        BookService bookService1=new BookService();
         int id;
         try {
             //存储图书信息获得id
-            book.setName(request.getParameter("name"));
-            book.setType(request.getParameter("type"));
-            book.setAuthor(request.getParameter("author"));
-            book.setIntro(request.getParameter("intro"));
-            book.setStatus(Integer.valueOf(request.getParameter("status")));
-            book.setUserId(Integer.valueOf(request.getParameter("userId")));
-            book.setReserveId(Integer.valueOf(request.getParameter("reserveId")));
+            book.setName(jsonObject.getString("name"));
+            book.setType(jsonObject.getString("type"));
+            book.setAuthor(jsonObject.getString("author"));
+            book.setIntro(jsonObject.getString("intro"));
+            book.setStatus(1);
+            book.setUserId(Integer.valueOf(jsonObject.getString("userId")));
             BookService bookService =new BookService();
             id=bookService.addBook(book);
 
@@ -45,14 +54,14 @@ public class AddBookServlet extends HttpServlet {
             bookService.uploadBookImg(String.valueOf(id),img, projRealPath);
 
             map.put("status",true);
-            JSONObject jsonObject = JSONObject.fromObject(map);
-            response.getWriter().print(jsonObject);
+            JSONObject jsonObject1 = JSONObject.fromObject(map);
+            response.getWriter().print(jsonObject1);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             map.put("status",false);
             map.put("error","Some properties are empty");
-            JSONObject jsonObject = JSONObject.fromObject(map);
-            response.getWriter().print(jsonObject);
+            JSONObject jsonObject1 = JSONObject.fromObject(map);
+            response.getWriter().print(jsonObject1);
         }
 
     }

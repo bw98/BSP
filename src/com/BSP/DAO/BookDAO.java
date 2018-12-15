@@ -55,12 +55,12 @@ public class BookDAO {
     public List<Book> searchBook(String name){
         SqlSession sqlsession=null;
         List<Book> booklist=new ArrayList<Book>();
-        Book book=null;
+        Book book=new Book();
+        book.setName(name);
         try {
             sqlsession=DB.getSqlsession();
-            booklist=sqlsession.selectList("Book.searchbook",name);
+            booklist=sqlsession.selectList("Book.searchbook",book);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }finally{
@@ -135,6 +135,24 @@ public class BookDAO {
         try {
             sqlSession=DB.getSqlsession();
             sqlSession.update("Book.deleteBook",id);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return true;
+    }
+
+    //修改图书信息
+    public boolean updateBook(Book book){
+        SqlSession sqlSession=null;
+        try {
+            sqlSession=DB.getSqlsession();
+            sqlSession.update("Book.updateBook",book);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
