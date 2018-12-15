@@ -43,6 +43,7 @@
     <mapper resource="com/BSP/config/User.xml"/>
     <mapper resource="com/BSP/config/Book.xml"/>
     <mapper resource="com/BSP/config/Comment.xml"/>
+    <mapper resource="com/BSP/config/Collection.xml"/>
   </mappers>
 
 </configuration>

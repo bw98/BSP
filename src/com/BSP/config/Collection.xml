@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.BSP.DAO.mybatisINF.CollectionMapper">
+
+    <insert id="addCollection" useGeneratedKeys="true" keyProperty="id" parameterType="com.BSP.bean.Comment">
+        insert into Collection(userId, bookId)
+        VALUE (#{userId}, #{bookId})
+    </insert>
+
+    <delete id="deleteCollection">
+         delete from Collection where id = #{id}
+    </delete>
+
+    <select id="findAllCollectionByUserId" resultType="com.BSP.bean.Collection">
+        select * from Collection where userId = #{userId}
+    </select>
+    <select id="pageAllCollection" resultType="com.BSP.bean.Collection">
+        SELECT * FROM Collection AS a
+        RIGHT JOIN (select userId, id from Collection where userId = #{userId} limit #{startIndex}, #{pageSize}) AS b
+        ON a.id = b.id
+    </select>
+</mapper>

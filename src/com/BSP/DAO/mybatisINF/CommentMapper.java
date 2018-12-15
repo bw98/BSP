@@ -12,11 +12,11 @@ public interface CommentMapper {
 
     void deleteComment(@Param("id") int id);
 
-    List<Comment> findAllComment();
+    List<Comment> findAllCommentByBookId(@Param("bookId") int bookId);
 
     List<Comment> selectCommentByUserId(@Param("userId") int userId);
 
     List<Comment> selectCommentByBookId(@Param("bookId") int bookId);
 
-    List<Comment> pageAllComment(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+    List<Comment> pageAllComment(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("bookId") int bookId);
 }

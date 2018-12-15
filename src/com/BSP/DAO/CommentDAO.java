@@ -24,7 +24,7 @@ public class CommentDAO {
         }
         return null;
     }
-
+    
     public int addComment(Comment comment) {
         database db = new database();
         SqlSession sqlSession = null;
@@ -69,13 +69,13 @@ public class CommentDAO {
         }
     }
 
-    public List<Comment> findAllComment() {
+    public List<Comment> findAllCommentByBookId(int bookId) {
         database db = new database();
         SqlSession sqlSession = null;
         try {
             sqlSession = db.getSqlsession();
             CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
-            return mapper.findAllComment();
+            return mapper.findAllCommentByBookId(bookId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -120,14 +120,14 @@ public class CommentDAO {
         return null;
     }
 
-    public List<Comment> pageAllComment(int startIndex, int pageSize) {
+    public List<Comment> pageAllComment(int startIndex, int pageSize, int bookId) {
         //需要注意mysql limit中start是从0开始的
         database db = new database();
         SqlSession sqlSession = null;
         try {
             sqlSession = db.getSqlsession();
             CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
-            return mapper.pageAllComment(startIndex, pageSize);
+            return mapper.pageAllComment(startIndex, pageSize, bookId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

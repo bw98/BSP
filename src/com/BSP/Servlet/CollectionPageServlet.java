@@ -1,9 +1,12 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.PageService;
+import com.BSP.Service.UserService;
+import com.BSP.Util.JWTUtil;
 import com.BSP.Util.JsonDateValueProcessor;
-import com.BSP.bean.Comment;
+import com.BSP.bean.Collection;
 import com.BSP.bean.Page;
+import io.jsonwebtoken.Claims;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -19,7 +22,7 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.List;
 
-public class CommentPageServlet extends HttpServlet {
+public class CollectionPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
@@ -36,12 +39,23 @@ public class CommentPageServlet extends HttpServlet {
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
         int pageNum = Integer.valueOf(jsonObject.getString("pagenum"));  //从json获取当前页号
-        int pageSize = 5;  //每页要展示的数据条数
-        int bookId = Integer.valueOf(jsonObject.getString("bookId"));
-        PageService pageService = new PageService();
-        Page<Comment> page = pageService.findCommentByPage(pageNum, pageSize, bookId);
+        int pageSize = 10;  //每页要展示的数据条数
+        int userId = -1;
 
-        List<Comment> list = page.getList();
+        String jwt = req.getHeader("Authorization");
+
+        try {
+            Claims c = JWTUtil.parseJWT(jwt);
+            UserService userService = new UserService();
+            userId = userService.findIdByUserName((String) c.get("user_name"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PageService pageService = new PageService();
+        Page<Collection> page = pageService.findCollectionByPage(pageNum, pageSize, userId); //取得某用户的收藏分页
+
+        List<Collection> list = page.getList();
         JsonConfig config = new JsonConfig();
         JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
         config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
