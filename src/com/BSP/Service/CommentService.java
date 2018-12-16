@@ -3,6 +3,8 @@ package com.BSP.Service;
 import com.BSP.DAO.CommentDAO;
 import com.BSP.bean.Comment;
 
+import java.util.List;
+
 public class CommentService {
     public int addComment(Comment comment) {
         CommentDAO commentDAO = new CommentDAO();
@@ -19,5 +21,11 @@ public class CommentService {
             return true;
         }
         return false;
+    }
+
+    public List<Comment>  findCommentByBookId(Comment comment) {
+        CommentDAO commentDAO = new CommentDAO();
+        List<Comment> comments = commentDAO.findCommentByBookId(comment);
+        return comments;
     }
 }

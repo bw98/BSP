@@ -71,6 +71,25 @@ public class BookDAO {
         return booklist;
     }
 
+    //查找所有待审核的图书
+    public List<Book> searchBookUnderCheck(){
+        SqlSession sqlsession=null;
+        List<Book> booklist=new ArrayList<Book>();
+        Book book=new Book();
+        try {
+            sqlsession=DB.getSqlsession();
+            booklist=sqlsession.selectList("Book.searchBookUnderCheck", book);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }finally{
+            if(sqlsession!=null){
+                sqlsession.close();
+            }
+        }
+        return booklist;
+    }
+
     //根据id查找书籍
     public  Book findBookByBookId(int id){
         SqlSession sqlSession=null;

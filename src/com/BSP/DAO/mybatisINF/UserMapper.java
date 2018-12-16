@@ -3,6 +3,8 @@ package com.BSP.DAO.mybatisINF;
 import com.BSP.bean.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     User findUserByName(String userName);
 
@@ -12,4 +14,7 @@ public interface UserMapper {
 
     void updateUserOntel(@Param("userName") String userName, @Param("tel") String tel);
 
+    List<User> findAllUser();
+
+    void deleteUser(@Param("id") int id);
 }

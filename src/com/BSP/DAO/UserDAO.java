@@ -4,7 +4,43 @@ import com.BSP.DAO.mybatisINF.UserMapper;
 import com.BSP.bean.User;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class UserDAO {
+    public List<User> findAllUser() {
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            return mapper.findAllUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return null;
+    }
+
+    public void deleteUser(int id) {
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.deleteUser(id);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
     public User findUserByName(User user) {
         database db = new database();
         SqlSession sqlSession = null;

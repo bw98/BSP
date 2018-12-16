@@ -22,4 +22,12 @@
             where userName = #{userName}
     </update>
 
+    <select id="findAllUser" resultType="com.BSP.bean.User">
+        SELECT * FROM User where 1=1
+    </select>
+
+    <delete id="deleteUser">
+        delete from User where id = #{id}
+    </delete>
+
 </mapper>

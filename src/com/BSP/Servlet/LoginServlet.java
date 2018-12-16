@@ -4,9 +4,9 @@ import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
 import com.BSP.bean.User;
 import net.sf.json.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
         UserService userService = new UserService();
         int code = userService.login(u);
 
-
         //设置 token 并传输 json
         if ((code == 3) || (code == 4)) {
             try {
@@ -55,7 +54,18 @@ public class LoginServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (code == 1) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", Integer.toString(code));
+            String jsonMap = JSONObject.fromObject(map).toString();
+            resp.getWriter().print(jsonMap);
+        } else {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", Integer.toString(code));
+            String jsonMap = JSONObject.fromObject(map).toString();
+            resp.getWriter().print(jsonMap);
         }
+
     }
 
 }

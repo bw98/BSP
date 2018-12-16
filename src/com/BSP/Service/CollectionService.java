@@ -3,6 +3,8 @@ package com.BSP.Service;
 import com.BSP.DAO.CollectionDAO;
 import com.BSP.bean.Collection;
 
+import java.util.List;
+
 public class CollectionService {
     public int addCollection(Collection collection) {
         CollectionDAO collectionDAO = new CollectionDAO();
@@ -15,4 +17,8 @@ public class CollectionService {
         collectionDAO.deleteCollection(collection);
     }
 
+    public List<Collection> findCollectionByUserId(int userId) {
+        CollectionDAO collectionDAO = new CollectionDAO();
+        return collectionDAO.findAllCollectionByUserId(userId);
+    }
 }

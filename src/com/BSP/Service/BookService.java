@@ -13,10 +13,25 @@ public class BookService {
         return booklist;
     }
 
+    public List<Book> searchBookUnderCheck() {
+        BookDAO bookDAO = new BookDAO();
+        return bookDAO.searchBookUnderCheck();
+    }
+
     public boolean deleteBook(int id){
         BookDAO bookDAO=new BookDAO();
         if(bookDAO.findBookByBookId(id)!=null){
             bookDAO.updateBookStatus(id,4);
+        }else{
+            return false;
+        }
+        return true;
+    }
+
+    public boolean approveBook(int id){
+        BookDAO bookDAO=new BookDAO();
+        if(bookDAO.findBookByBookId(id)!=null){
+            bookDAO.updateBookStatus(id,0);
         }else{
             return false;
         }

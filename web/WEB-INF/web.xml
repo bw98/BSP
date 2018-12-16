@@ -41,12 +41,39 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>findAllUser</servlet-name>
+        <servlet-class>com.BSP.Servlet.FindAllUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findAllUser</servlet-name>
+        <url-pattern>/findAllUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>com.BSP.Servlet.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/deleteUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>searchbook</servlet-name>
         <servlet-class>com.BSP.Servlet.SearchBookServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>searchbook</servlet-name>
         <url-pattern>/searchbook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>searchBookUnderCheck</servlet-name>
+        <servlet-class>com.BSP.Servlet.SearchBookUnderCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchBookUnderCheck</servlet-name>
+        <url-pattern>/searchBookUnderCheck</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -65,6 +92,24 @@
     <servlet-mapping>
         <servlet-name>deletebook</servlet-name>
         <url-pattern>/deletebook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteBookByAdmin</servlet-name>
+        <servlet-class>com.BSP.Servlet.DeleteBookByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteBookByAdmin</servlet-name>
+        <url-pattern>/deleteBookByAdmin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>approveBook</servlet-name>
+        <servlet-class>com.BSP.Servlet.ApproveBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>approveBook</servlet-name>
+        <url-pattern>/approveBook</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -177,6 +222,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>findCommentByBook</servlet-name>
+        <servlet-class>com.BSP.Servlet.FindCommentByBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findCommentByBook</servlet-name>
+        <url-pattern>/findCommentByBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>addCollection</servlet-name>
         <servlet-class>com.BSP.Servlet.AddCollectionServlet</servlet-class>
     </servlet>
@@ -201,6 +255,15 @@
     <servlet-mapping>
         <servlet-name>collectionPage</servlet-name>
         <url-pattern>/collectionPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>findCollectionByUser</servlet-name>
+        <servlet-class>com.BSP.Servlet.FindCollectionByUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findCollectionByUser</servlet-name>
+        <url-pattern>/findCollectionByUser</url-pattern>
     </servlet-mapping>
 
     <filter>
