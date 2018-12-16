@@ -33,22 +33,20 @@ public class AddRentServlet extends HttpServlet {
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
         Map<String, String> map = new HashMap<String, String>();
 
-        try {
-            Rent rent=new Rent();
-            rent.setBookId(Integer.valueOf(jsonObject.getString("bookId")));
-            rent.setUserId(Integer.valueOf(jsonObject.getString("userId")));
-            RentService rentService =new RentService();
-            rentService.rent(rent);
+        Rent rent=new Rent();
+        rent.setBookId(Integer.valueOf(jsonObject.getString("bookId")));
+        rent.setUserId(Integer.valueOf(jsonObject.getString("userId")));
+        RentService rentService =new RentService();
+        boolean status=rentService.rent(rent);
+        if(status=true){
             map.put("status", "true");
             JSONObject jsonMap = JSONObject.fromObject(map);
             response .getWriter().print(jsonMap);
-        } catch (NumberFormatException e) {
-            map.put("status", "false");
-            map.put("error",e.getMessage());
-            JSONObject jsonMap = JSONObject.fromObject(map);
-            response .getWriter().print(jsonMap);
-        }
-
+        }else{
+                map.put("status", "false");
+                JSONObject jsonMap = JSONObject.fromObject(map);
+                response .getWriter().print(jsonMap);
+            }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
