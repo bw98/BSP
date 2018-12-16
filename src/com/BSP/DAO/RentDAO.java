@@ -76,4 +76,20 @@ public class RentDAO {
         }
         return list;
     }
+
+    public List<Rent> allOverRent(){
+        SqlSession sqlSession=null;
+        List<Rent> list = new ArrayList<Rent>();
+        try {
+            sqlSession=DB.getSqlsession();
+            list=sqlSession.selectList("Rent.findAllRent");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return list;
+    }
 }

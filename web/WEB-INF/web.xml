@@ -211,6 +211,15 @@
         <url-pattern>/overdue</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>alloverdue</servlet-name>
+        <servlet-class>com.BSP.Servlet.AllOverdueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alloverdue</servlet-name>
+        <url-pattern>/alloverdue</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>commentPage</servlet-name>

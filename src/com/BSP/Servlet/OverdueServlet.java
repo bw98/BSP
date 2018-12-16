@@ -3,10 +3,12 @@ package com.BSP.Servlet;
 import com.BSP.Service.RentService;
 import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
+import com.BSP.Util.JsonDateValueProcessor;
 import com.BSP.bean.Rent;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -44,7 +47,10 @@ public class OverdueServlet extends HttpServlet {
             Claims c = JWTUtil.parseJWT(jwt);
             int userId=userService.findIdByUserName((String)c.get("user_name"));
             List list=rentService.overdue(userId);
-            String json = JSONArray.fromObject(list).toString();
+            JsonConfig config = new JsonConfig();
+            JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
+            config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
+            String json = JSONArray.fromObject(list, config).toString();
             response.getWriter().print(json);
         } catch (ParseException e) {
             e.printStackTrace();

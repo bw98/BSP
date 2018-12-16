@@ -49,8 +49,7 @@ public class AddBookServlet extends HttpServlet {
             int startIdx = projRealPath.indexOf("BSP/");
             projRealPath = projRealPath.substring(0, startIdx + 4);
 
-            String img=request.getParameter("img");
-            System.out.println("img: " + img);
+            String img=jsonObject.getString("img");
             bookService.uploadBookImg(String.valueOf(id),img, projRealPath);
 
             map.put("status",true);

@@ -37,7 +37,7 @@ public class PageServlet extends HttpServlet {
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
-        int pagenum = Integer.valueOf(jsonObject .getString("pagenum"));
+        int pagenum = Integer.valueOf(jsonObject.getString("page"));
         int pagesize;
         if(pagenum==1){
             pagesize = 7;
