@@ -53,4 +53,10 @@ public class BookService {
         bookDAO.updateImgUrl(bookid, savePath);
         return savePath;
     }
+
+    public int findStatusById(int id){
+        BookDAO bookDAO=new BookDAO();
+        Book book=bookDAO.findBookByBookId(id);
+        return book.getStatus();
+    }
 }
