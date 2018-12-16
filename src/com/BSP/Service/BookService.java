@@ -74,4 +74,9 @@ public class BookService {
         Book book=bookDAO.findBookByBookId(id);
         return book.getStatus();
     }
+
+    public List<Book> findMyBook(int userId){
+        BookDAO bookDAO=new BookDAO();
+        return bookDAO.findMyBook(userId);
+    }
 }

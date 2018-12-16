@@ -184,4 +184,21 @@ public class BookDAO {
         return true;
     }
 
+    //查找个人上传的所有图书
+    public List<Book> findMyBook(int userId){
+        SqlSession sqlSession=null;
+        List list=new ArrayList();
+        try {
+            sqlSession=DB.getSqlsession();
+            list=sqlSession.selectList("Book.findMyBook",userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return list;
+    }
+
 }

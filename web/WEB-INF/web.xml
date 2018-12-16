@@ -185,6 +185,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>mybook</servlet-name>
+        <servlet-class>com.BSP.Servlet.MyBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mybook</servlet-name>
+        <url-pattern>/mybook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>addComment</servlet-name>
         <servlet-class>com.BSP.Servlet.AddCommentServlet</servlet-class>
     </servlet>

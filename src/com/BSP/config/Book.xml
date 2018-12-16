@@ -66,7 +66,10 @@
     where id=#{id}
   </update>
 
-
+  <!--自己上传的图书-->
+  <select id="findMyBook" parameterType="int" resultType="com.BSP.bean.Book">
+    select * from Book where userId=#{userId}
+  </select>
 
 
 </mapper>
