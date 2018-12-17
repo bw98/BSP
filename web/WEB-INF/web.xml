@@ -318,10 +318,14 @@
     <filter>
         <filter-name>JWTFilter</filter-name>
         <filter-class>com.BSP.Filter.JWTFilter</filter-class>
+        <init-param>
+            <param-name>ignores</param-name>
+            <param-value>/register,/login</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>JWTFilter</filter-name>
-        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
 

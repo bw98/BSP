@@ -7,9 +7,26 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @WebFilter(filterName = "JWTFilter")
 public class JWTFilter implements Filter {
+
+    private Set<String> prefixIignores = new HashSet<String>();
+
+    private boolean canIgnore(HttpServletRequest request) {
+        String url = request.getRequestURI();
+        for (String ignore : prefixIignores) {
+            System.out.println("url------------->"+url);
+            if (url.startsWith(ignore)) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void destroy() {
     }
 
@@ -19,6 +36,11 @@ public class JWTFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
+
+        if (canIgnore(request)) {
+            chain.doFilter(request, response);
+            return;
+        }
 
         String jwt = request.getHeader("Authorization");
         try {
@@ -33,7 +55,11 @@ public class JWTFilter implements Filter {
     }
 
     public void init(FilterConfig config) throws ServletException {
-
+        String cp = config.getServletContext().getContextPath();
+        String ignoresParam = config.getInitParameter("ignores");
+        String[] ignoreArray = ignoresParam.split(",");
+        for (String s : ignoreArray) {
+            prefixIignores.add(cp + s);
+        }
     }
-
 }
