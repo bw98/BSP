@@ -1,7 +1,10 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.ReserveService;
+import com.BSP.Service.UserService;
+import com.BSP.Util.JWTUtil;
 import com.BSP.bean.Reserve;
+import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -36,7 +39,11 @@ public class AddReserveServlet extends HttpServlet {
         try {
             Reserve reserve=new Reserve();
             reserve.setBookId(Integer.valueOf(jsonObject.getString("bookId")));
-            reserve.setUserId(Integer.valueOf(jsonObject.getString("userId")));
+            String jwt = request.getHeader("Authorization");
+            Claims c = JWTUtil.parseJWT(jwt);
+            UserService userService=new UserService();
+            int userId=userService.findIdByUserName((String)c.get("user_name"));
+            reserve.setUserId(userId);
             ReserveService reserveService=new ReserveService();
             reserveService.reserve(reserve);
             map.put("status", "true");
@@ -47,6 +54,8 @@ public class AddReserveServlet extends HttpServlet {
             map.put("error",e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);
             response .getWriter().print(jsonMap);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

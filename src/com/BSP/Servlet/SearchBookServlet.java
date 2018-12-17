@@ -7,7 +7,6 @@ import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-@WebServlet(name = "SearchBookServlet")
+
 public class SearchBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -33,13 +32,13 @@ public class SearchBookServlet extends HttpServlet {
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
         BookService bookService=new BookService();
-        String name=jsonObject .getString("name");
-        List<Book> list = bookService.searchbook(name);
+        String key=jsonObject .getString("key");
+        List<Book> list = bookService.searchbook(key);
         JSONArray array = JSONArray.fromObject(list);
         response.getWriter().print(array);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.doPost(request,response);
     }
 }

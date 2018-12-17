@@ -8,7 +8,6 @@ import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,27 +32,31 @@ public class DeleteBookServlet extends HttpServlet {
         br.close();
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
-        int bookid=Integer .valueOf(jsonObject .getString("id"));
-        int user_id=Integer.valueOf(jsonObject.getString("userId"));
+        int bookId=Integer.valueOf(jsonObject.getString("bookId"));
+        BookService bookService =new BookService();
+        UserService userService=new UserService();
+        Map<String, String> map = new HashMap<String, String>();
 
-        String jwt = request.getHeader("Authorization");
-        int userId;
-        Claims c = null;
         try {
-            c = JWTUtil.parseJWT(jwt);
-            UserService userService = new UserService();
-            userId = userService.findIdByUserName((String) c.get("user_name"));
+            String jwt = request.getHeader("Authorization");
+            Claims c = JWTUtil.parseJWT(jwt);
+            int userId=userService.findIdByUserName((String)c.get("user_name"));
 
-            if(user_id==userId){
-                BookService bookService =new BookService();
-                bookService.deleteBook(bookid);
-                Map<String, String> map = new HashMap<String, String>();
+            Map map1=bookService.findBookById(bookId);
+            int ownerId=(int)map1.get("userId");
+
+            if(userId==ownerId) {
+                bookService.deleteBook(bookId);
                 map.put("status", "true");
+                JSONObject jsonMap = JSONObject.fromObject(map);
+                response.getWriter().print(jsonMap);
+            }else{
+                map.put("status", "false");
+                map.put("error","No permission to delete");
                 JSONObject jsonMap = JSONObject.fromObject(map);
                 response .getWriter().print(jsonMap);
             }
         } catch (Exception e) {
-            Map<String, String> map = new HashMap<String, String>();
             map.put("status", "false");
             map.put("error",e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);

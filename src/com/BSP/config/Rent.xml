@@ -7,7 +7,7 @@
     <!--预定图书-->
     <insert id="rentBook" parameterType="com.BSP.bean.Rent" >
     INSERT INTO Rent(userId,bookId)
-    VALUES( #{userId},#{bookId})
+    VALUES(#{userId},#{bookId})
     </insert>
 
     <!--删除预约记录状态-->
@@ -28,6 +28,11 @@
     <!--查看所有借阅情况-->
     <select id="findAllRent" resultType="com.BSP.bean.Rent">
         select * from Rent where status=0
+    </select>
+
+    <!--根据用户id和bookid查找记录-->
+    <select id="findRentByUseridBookid" parameterType="com.BSP.bean.Rent" resultType="com.BSP.bean.Rent">
+        select * from Rent where userId=#{userId} and bookId=#{bookId} and status=0
     </select>
 
 </mapper>

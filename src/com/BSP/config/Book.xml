@@ -39,7 +39,7 @@
 
   <!--查找所有书籍-->
   <select id="allbook" resultMap="Book">
-    SELECT * FROM Book WHERE 1=1
+    SELECT * FROM Book WHERE status!=4
   </select>
 
   <!--根据id查找书籍-->
@@ -74,7 +74,7 @@
 
   <!--自己上传的图书-->
   <select id="findMyBook" parameterType="int" resultType="com.BSP.bean.Book">
-    select * from Book where userId=#{userId}
+    select * from Book where userId=#{userId} and status!=4
   </select>
 
 

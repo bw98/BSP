@@ -19,6 +19,9 @@ import java.util.Map;
 
 public class LoginServlet extends HttpServlet {
 
+    public static void main(String[] args){
+
+    }
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
@@ -34,6 +37,7 @@ public class LoginServlet extends HttpServlet {
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
         User u = (User) JSONObject.toBean(jsonObject, User.class);
+
 
         //执行登陆业务
         UserService userService = new UserService();

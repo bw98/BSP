@@ -4,6 +4,7 @@ import com.BSP.DAO.BookDAO;
 import com.BSP.DAO.UserDAO;
 import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
+import com.BSP.bean.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,13 @@ public class BookService {
         BookDAO bookDAO = new BookDAO();
         List booklist = bookDAO.searchBook(name);
         return booklist;
+    }
+
+    //获取所有书籍
+    public List<Book> allBook(){
+        BookDAO bookDAO = new BookDAO();
+        List list=bookDAO.queryBookList();
+        return list;
     }
 
     public ArrayList<Map> searchBookUnderCheck() {
@@ -99,14 +107,38 @@ public class BookService {
         return savePath;
     }
 
-    public int findStatusById(int id){
+    //根据书籍id查找相关信息
+    public Map findBookById(int id){
         BookDAO bookDAO=new BookDAO();
+        UserDAO userDAO=new UserDAO();
         Book book=bookDAO.findBookByBookId(id);
-        return book.getStatus();
+        User user=userDAO.findUserById(book.getUserId());
+        Map map=new HashMap();
+
+        map.put("bookName",book.getName());
+        map.put("author",book.getAuthor());
+        map.put("type",book.getType());
+        map.put("userName",user.getUserName());
+        map.put("intro",book.getIntro());
+        map.put("status",book.getStatus());
+        map.put("userId",book.getUserId());
+
+
+        return map;
     }
 
-    public List<Book> findMyBook(int userId){
+    public List<Map> findMyBook(int userId){
         BookDAO bookDAO=new BookDAO();
-        return bookDAO.findMyBook(userId);
+        List list=bookDAO.findMyBook(userId);
+        List<Map> alllist=new ArrayList<Map>();
+        for(int i=0;i<list.size();i++){
+            Book book=(Book)list.get(i);
+            Map map=new HashMap();
+            map.put("name",book.getName());
+            map.put("status",book.getStatus());
+            map.put("bookId",book.getId());
+            alllist.add(map);
+        }
+        return alllist;
     }
 }

@@ -92,4 +92,20 @@ public class RentDAO {
         }
         return list;
     }
+
+    public Rent findRentByUseridBookid(Rent rent){
+        SqlSession sqlSession=null;
+        Rent rent1=new Rent();
+        try {
+            sqlSession=DB.getSqlsession();
+            rent1=sqlSession.selectOne("Rent.findRentByUseridBookid",rent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return rent1;
+    }
 }

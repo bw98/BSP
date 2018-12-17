@@ -68,6 +68,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>findonebook</servlet-name>
+        <servlet-class>com.BSP.Servlet.FindOneBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findonebook</servlet-name>
+        <url-pattern>/findonebook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>searchBookUnderCheck</servlet-name>
         <servlet-class>com.BSP.Servlet.SearchBookUnderCheckServlet</servlet-class>
     </servlet>

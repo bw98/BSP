@@ -1,7 +1,10 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.RentService;
+import com.BSP.Service.UserService;
+import com.BSP.Util.JWTUtil;
 import com.BSP.bean.Rent;
+import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -29,11 +32,15 @@ public class ReturnBookServlet extends HttpServlet {
         br.close();
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
-
+        Rent rent=new Rent();
         try {
             RentService rentService=new RentService();
-            int id=Integer.valueOf(jsonObject.getString("id"));
-            rentService.back(id);
+            rent.setBookId(Integer.valueOf(jsonObject.getString("bookId")));
+            String jwt = request.getHeader("Authorization");
+            Claims c = JWTUtil.parseJWT(jwt);
+            UserService userService=new UserService();
+            rent.setUserId(userService.findIdByUserName((String)c.get("user_name")));
+            rentService.back(rent);
             Map<String, String> map = new HashMap<String, String>();
             map.put("status", "true");
             JSONObject jsonMap = JSONObject.fromObject(map);
@@ -44,6 +51,8 @@ public class ReturnBookServlet extends HttpServlet {
             map.put("error",e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);
             response .getWriter().print(jsonMap);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
