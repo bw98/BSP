@@ -11,14 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SearchBookUnderCheckServlet extends HttpServlet {
-
+public class FindAllStoredBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
         BookService bookService = new BookService();
-        ArrayList<Map> list = bookService.searchBookUnderCheck();        
+        ArrayList<Map> list = bookService.findAllStoredBook();
 
         String json = JSONArray.fromObject(list).toString();
         resp.getWriter().print(json);

@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class FindCommentByBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,7 +37,7 @@ public class FindCommentByBookServlet extends HttpServlet {
         Comment comment = (Comment)JSONObject.toBean(jsonObject, Comment.class);
 
         CommentService commentService = new CommentService();
-        List<Comment> list = commentService.findCommentByBookId(comment);
+        ArrayList<Map> list = commentService.findCommentByBookId(comment);
         JsonConfig config = new JsonConfig();
         JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
         config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);

@@ -26,6 +26,12 @@
     select * from Book where status = 1
   </select>
 
+  <!--查找所有已上架的图书-->
+  <select id="findAllStoredBook" parameterType="com.BSP.bean.Book" resultMap="Book">
+    select * from Book where status = 0
+  </select>
+
+
   <!--分页展示书籍-->
   <select id="page" parameterType="java.util.Map" resultMap="Book">
     select * from Book limit #{startindex} , #{pagesize}

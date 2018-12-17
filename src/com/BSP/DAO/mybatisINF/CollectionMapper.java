@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CollectionMapper {
 
+    Collection findCollectionByBookIdAndUserId(@Param("bookId") int bookId, @Param("userId") int userId);
+
     void addCollection(Collection collection);
 
     void deleteCollection(@Param("id") int id);

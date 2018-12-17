@@ -33,7 +33,7 @@ public class DeleteBookByAdminServlet extends HttpServlet {
 
         bookService.deleteBook(id);
         map.put("status", "true");
-        JSONObject jsonMap = JSONObject.fromObject(map);
+        String jsonMap = JSONObject.fromObject(map).toString();
         resp.getWriter().print(jsonMap);
     }
 

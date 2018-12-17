@@ -13,6 +13,10 @@
          delete from Collection where id = #{id}
     </delete>
 
+    <select id="findCollectionByBookIdAndUserId" resultType="com.BSP.bean.Collection">
+        select * from Collection where bookId = #{bookId} and userId = #{userId}
+    </select>
+
     <select id="findAllCollectionByUserId" resultType="com.BSP.bean.Collection">
         select * from Collection where userId = #{userId}
     </select>

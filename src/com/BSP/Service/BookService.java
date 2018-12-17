@@ -1,10 +1,14 @@
 package com.BSP.Service;
 
 import com.BSP.DAO.BookDAO;
+import com.BSP.DAO.UserDAO;
 import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookService {
     public List<Book> searchbook(String name) {
@@ -13,9 +17,35 @@ public class BookService {
         return booklist;
     }
 
-    public List<Book> searchBookUnderCheck() {
+    public ArrayList<Map> searchBookUnderCheck() {
         BookDAO bookDAO = new BookDAO();
-        return bookDAO.searchBookUnderCheck();
+        UserDAO userDAO = new UserDAO();
+        List<Book> books = bookDAO.searchBookUnderCheck();
+        ArrayList<Map> list = new ArrayList<Map>();
+        for (Book b: books) {
+            Map<String, String> map = new HashMap<>();  //Map不能被 new，它是一个接口
+            map.put("id", Integer.toString(b.getId()));
+            map.put("name", b.getName());
+            map.put("userName", userDAO.findUserById(b.getUserId()).getUserName());
+            list.add(map);
+        }
+        return list;
+    }
+
+    public ArrayList<Map> findAllStoredBook () {
+        BookDAO bookDAO = new BookDAO();
+        UserDAO userDAO = new UserDAO();
+        List<Book> books = bookDAO.findAllStoredBook();
+        ArrayList<Map> list = new ArrayList<Map>();
+        for (Book b: books) {
+            Map<String, String> map = new HashMap<>();
+            map.put("id", Integer.toString(b.getId()));
+            map.put("name", b.getName());
+            map.put("userName", userDAO.findUserById(b.getUserId()).getUserName());
+            list.add(map);
+        }
+        return list;
+
     }
 
     public boolean deleteBook(int id){

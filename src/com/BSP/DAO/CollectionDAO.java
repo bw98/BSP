@@ -7,6 +7,26 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class CollectionDAO {
+    public boolean findCollectionByBookIdAndUserId(Collection collection) {
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            CollectionMapper mapper = sqlSession.getMapper(CollectionMapper.class);
+            Collection c = mapper.findCollectionByBookIdAndUserId(collection.getBookId(), collection.getUserId());
+            if (c == null) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+
+        return true;
+    }
     public int addCollection(Collection collection) {
         database db = new database();
         SqlSession sqlSession = null;
@@ -57,9 +77,7 @@ public class CollectionDAO {
             CollectionMapper mapper = sqlSession.getMapper(CollectionMapper.class);
             return mapper.findAllCollectionByUserId(userId);
         } catch (Exception e) {
-            if (sqlSession != null) {
-                sqlSession.rollback();
-            }
+            e.printStackTrace();
         } finally {
             if (sqlSession != null) {
                 sqlSession.close();

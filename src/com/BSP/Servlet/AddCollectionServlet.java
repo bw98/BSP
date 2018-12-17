@@ -3,11 +3,9 @@ package com.BSP.Servlet;
 import com.BSP.Service.CollectionService;
 import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
-import com.BSP.Util.JsonDateValueProcessor;
 import com.BSP.bean.Collection;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -18,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddCollectionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,13 +45,18 @@ public class AddCollectionServlet extends HttpServlet {
             long nowMills = System.currentTimeMillis();
             Date now = new Date(nowMills);
             collection.setCollTime(now);
-            collectionService.addCollection(collection);
 
-            JsonConfig config = new JsonConfig();
-            JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
-            config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
-            String json = JSONObject.fromObject(collection, config).toString();
-            resp.getWriter().print(json);
+            if (collectionService.addCollection(collection) == -1) {
+                Map<String, String> map = new HashMap<>();
+                map.put("status", "false");
+                String jsonMap = JSONObject.fromObject(map).toString();
+                resp.getWriter().print(jsonMap);
+            } else {
+                Map<String, String> map = new HashMap<>();
+                map.put("status", "true");
+                String jsonMap = JSONObject.fromObject(map).toString();
+                resp.getWriter().print(jsonMap);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserMapper {
     User findUserByName(String userName);
 
+    User findUserById(@Param("id") int id);
+
     void addUser(User user);
 
     void updateUserOnPassword(@Param("userName") String userName, @Param("password") String password);

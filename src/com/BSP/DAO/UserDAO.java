@@ -122,5 +122,22 @@ public class UserDAO {
         }
     }
 
+    public User findUserById(int id){
+        database db = new database();
+        SqlSession sqlSession = null;
+        User user=new User();
+        try {
+            sqlSession = db.getSqlsession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            user = mapper.findUserById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return user;
+    }
 
 }

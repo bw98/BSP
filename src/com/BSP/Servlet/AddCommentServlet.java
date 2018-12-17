@@ -18,6 +18,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,10 +49,14 @@ public class AddCommentServlet extends HttpServlet {
             comment.setCreateTime(now);
             commentService.addComment(comment);
 
-            JsonConfig config = new JsonConfig();
-            JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
-            config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
-            String json = JSONObject.fromObject(comment, config).toString();
+//            JsonConfig config = new JsonConfig();
+//            JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
+//            config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
+//            String json = JSONObject.fromObject(comment, config).toString();
+//            resp.getWriter().print(json);
+            Map<String, String> map = new HashMap<>();
+            map.put("status", "true");
+            String json = JSONObject.fromObject(map).toString();
             resp.getWriter().print(json);
         } catch (Exception e) {
             e.printStackTrace();

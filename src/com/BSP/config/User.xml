@@ -7,6 +7,10 @@
     SELECT * FROM User WHERE userName = #{userName}
   </select>
 
+    <select id="findUserById" resultType="com.BSP.bean.User">
+    SELECT * FROM User WHERE id = #{id}
+  </select>
+
     <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.BSP.bean.User">
         INSERT INTO User (userName, password, tel, status)
         VALUE (#{userName}, #{password}, #{tel}, #{status})
