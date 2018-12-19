@@ -24,16 +24,6 @@ public class AllReserveServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-        BufferedReader br = new BufferedReader(new InputStreamReader((ServletInputStream) request.getInputStream(), "utf-8"));
-        StringBuffer sb = new StringBuffer("");
-        String temp;
-        while ((temp = br.readLine()) != null) {
-            sb.append(temp);
-        }
-        br.close();
-        String jsonStr = sb.toString();
-        JSONObject jsonObject = JSONObject.fromObject(jsonStr);
-
         try {
             ReserveService reserveService=new ReserveService();
             String jwt = request.getHeader("Authorization");
