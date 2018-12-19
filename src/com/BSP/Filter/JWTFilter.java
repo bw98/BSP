@@ -18,9 +18,8 @@ public class JWTFilter implements Filter {
     private boolean canIgnore(HttpServletRequest request) {
         String url = request.getRequestURI();
         for (String ignore : prefixIignores) {
-            System.out.println("url------------->"+url);
             if (url.startsWith(ignore)) {
-
+                System.out.println("url------------->"+url+ " has ignore");
                 return true;
             }
         }
@@ -45,11 +44,10 @@ public class JWTFilter implements Filter {
         String jwt = request.getHeader("Authorization");
         try {
             Claims c = JWTUtil.parseJWT(jwt);
-            response.getWriter().write("User: " + c.get("user_name") + " has logged in");
             chain.doFilter(req, resp);
 
         } catch (Exception e) {
-            response.getWriter().write("not login，validate fail");
+            System.out.println("ExceptionExceptionExceptionExceptionExceptionException");
             e.printStackTrace();
         }
     }
@@ -61,5 +59,6 @@ public class JWTFilter implements Filter {
         for (String s : ignoreArray) {
             prefixIignores.add(cp + s);
         }
+
     }
 }

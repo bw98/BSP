@@ -100,10 +100,12 @@ public class BookService {
             return null;
         }
 
-        String savePath = projRealPath + "web/WEB-INF/BookPhoto/" + bookId + ".jpg";
+        String savePath = "/usr/java/tomcat/apache-tomcat-9.0.13/webapps/BSP/BookPhoto/" + bookId + ".jpg";  //服务器使用
+//        String savePath = projRealPath + "web/BookPhoto/" + bookId + ".jpg"; //本地测试使用
+        String savePath2 = "/BookPhoto/" + bookId + ".jpg";
         System.out.println(savePath);
         ImgBinUtil.base64StringToImage(imgBin,savePath);
-        bookDAO.updateImgUrl(bookid, savePath);
+        bookDAO.updateImgUrl(bookid, savePath2);
         return savePath;
     }
 
@@ -122,8 +124,7 @@ public class BookService {
         map.put("intro",book.getIntro());
         map.put("status",book.getStatus());
         map.put("userId",book.getUserId());
-
-
+        map.put("imgUrl", book.getImgUrl());
         return map;
     }
 

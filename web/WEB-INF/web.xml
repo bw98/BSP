@@ -320,13 +320,12 @@
         <filter-class>com.BSP.Filter.JWTFilter</filter-class>
         <init-param>
             <param-name>ignores</param-name>
-            <param-value>/register,/login</param-value>
+            <param-value>/register,/login,/BookPhoto</param-value>
         </init-param>
     </filter>
     <filter-mapping>
         <filter-name>JWTFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 
 </web-app>
