@@ -27,10 +27,21 @@ public class UserService {
 
     public boolean regist(User user) {
         UserDAO userDAO = new UserDAO();
-        User u = userDAO.findUserByName(user);
-        if (u != null) {
+
+        // User实例中除了status和id外的每一项属性都必须非空
+        // 如果Bean中的属性类型是String，则 JSONObject.toBean 会把json串中缺失的键值转为null
+        // 比如传入的串为{"userName":"lwf123123","password":"123456789"}，tel键值对是缺失的
+        // 当使用 JSONObject.toBean 转化json串为User实例时，tel就会被设置为null
+        if ((user.getUserName() == null) || (user.getPassword() == null) || (user.getTel() == null)) {
             return false;
         }
+
+        // 查询是否在数据库中已存在该用户名的用户，存在的话就不允许注册
+        User u = userDAO.findUserByName(user);
+        if ((u != null)) {
+            return false;
+        }
+
         userDAO.addUser(user);
         return true;
     }

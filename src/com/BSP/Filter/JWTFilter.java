@@ -19,7 +19,7 @@ public class JWTFilter implements Filter {
         String url = request.getRequestURI();
         for (String ignore : prefixIignores) {
             if (url.startsWith(ignore)) {
-                System.out.println("url------------->"+url+ " has ignore");
+                System.out.println("url------------->"+url+ " has been ignored");  // 该请求不会被拦截
                 return true;
             }
         }
@@ -47,7 +47,7 @@ public class JWTFilter implements Filter {
             chain.doFilter(req, resp);
 
         } catch (Exception e) {
-            System.out.println("ExceptionExceptionExceptionExceptionExceptionException");
+            System.out.println("[JWTFilter第50行] raise Exception");
             e.printStackTrace();
         }
     }

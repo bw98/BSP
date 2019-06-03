@@ -100,8 +100,8 @@ public class BookService {
             return null;
         }
 
-        String savePath = "/usr/java/tomcat/apache-tomcat-9.0.13/webapps/BSP/BookPhoto/" + bookId + ".jpg";  //服务器使用
-//        String savePath = projRealPath + "web/BookPhoto/" + bookId + ".jpg"; //本地测试使用
+//        String savePath = "/usr/java/tomcat/apache-tomcat-9.0.13/webapps/BSP/BookPhoto/" + bookId + ".jpg";  //zqw服务器使用
+        String savePath = projRealPath + "web/BookPhoto/" + bookId + ".jpg"; //本地测试使用
         String savePath2 = "/BookPhoto/" + bookId + ".jpg";
         System.out.println(savePath);
         ImgBinUtil.base64StringToImage(imgBin,savePath);

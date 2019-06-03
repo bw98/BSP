@@ -39,6 +39,7 @@ public class RegistServlet extends HttpServlet {
 
         } else {
             map.put("status", "1");
+            map.put("error", "Some properties are empty, or userName has existed");
         }
         String jsonMap = JSONObject.fromObject(map).toString();
         resp.getWriter().print(jsonMap);
