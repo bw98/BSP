@@ -16,6 +16,8 @@ public interface UserMapper {
 
     void updateUserOntel(@Param("userName") String userName, @Param("tel") String tel);
 
+    void updateUserStatus(@Param("userId") int userId, @Param("status") int status);
+
     List<User> findAllUser();
 
     void deleteUser(@Param("id") int id);

@@ -140,4 +140,19 @@ public class UserDAO {
         return user;
     }
 
+    public void updateUserStatus(int userId,int status){
+        database db = new database();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = db.getSqlsession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.updateUserStatus(userId, status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
 }

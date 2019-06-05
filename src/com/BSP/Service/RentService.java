@@ -21,7 +21,9 @@ public class RentService {
         Book book=bookDAO.findBookByBookId(rent.getBookId());
         //判断是否超出借书最大期限（天数）
         long judge=(book.getFinalDay().getTime()/ (24 * 60 * 60 * 1000))-(rent.getEndData().getTime()/ (24 * 60 * 60 * 1000));
-        if(book.getStatus()==0&&judge>0){
+        UserDAO userDAO=new UserDAO();
+        User user=userDAO.findUserById(rent.getUserId());
+        if(book.getStatus()==0&&judge>0&&user.getStatus()!=2){
             rentDAO.addRent(rent);
             //设置书为"已借出"状态
             bookDAO.updateBookStatus(rent.getBookId(),3);
@@ -81,6 +83,7 @@ public class RentService {
 
 
     public List<Map> overdue(int userId) throws ParseException {
+        int sum=0;//标志位，如果有逾期则为1，没有则为0
         RentDAO rentDAO=new RentDAO();
         List<Rent> list=rentDAO.allRent(userId);
         List<Map> overlist=new ArrayList<Map>();
@@ -91,7 +94,6 @@ public class RentService {
 
         for(int i=0;i<list.size();i++){
             Rent rent=list.get(i);
-            Date date=rent.getBeginData();
             BookDAO bookDAO=new BookDAO();
             Map map=new HashMap();
 
@@ -103,9 +105,12 @@ public class RentService {
                 Book book=bookDAO.findBookByBookId(rent.getBookId());
                 map.put("bookName",book.getName());
                 overlist.add(map);
+                sum=1;
             }
-
-
+            if(sum==1){
+                UserDAO userDAO=new UserDAO();
+                userDAO.updateUserStatus(userId,2);
+            }
         }
         return overlist;
     }
