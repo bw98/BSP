@@ -9,6 +9,7 @@ import com.BSP.bean.Rent;
 import com.BSP.bean.User;
 import net.sf.json.JsonConfig;
 
+import javax.tools.JavaCompiler;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -18,7 +19,9 @@ public class RentService {
         BookDAO bookDAO =new BookDAO();
         RentDAO rentDAO=new RentDAO();
         Book book=bookDAO.findBookByBookId(rent.getBookId());
-        if(book.getStatus()==0){
+        //判断是否超出借书最大期限（天数）
+        long judge=(book.getFinalDay().getTime()/ (24 * 60 * 60 * 1000))-(rent.getEndData().getTime()/ (24 * 60 * 60 * 1000));
+        if(book.getStatus()==0&&judge>0){
             rentDAO.addRent(rent);
             //设置书为"已借出"状态
             bookDAO.updateBookStatus(rent.getBookId(),3);
@@ -92,28 +95,26 @@ public class RentService {
             BookDAO bookDAO=new BookDAO();
             Map map=new HashMap();
 
-            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c = Calendar.getInstance();
-
-            c.setTime(date);
-            c.add(Calendar.DATE,30);
-            Date deadline=c.getTime();//到期时间
-            Calendar c1 = Calendar.getInstance();
-            Date nowdate = c1.getTime();//当前时间
-
-            long deadline1 = deadline.getTime();
-            long nowdate1 = nowdate.getTime();
-            long day = (nowdate1-deadline1)/(24*60*60*1000);
-
-            if(deadline.compareTo(nowdate)==-1){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            Date nowdate = java.sql.Date.valueOf(df.format(new Date()));
+            Date enddate=rent.getEndData();
+            long judge=(nowdate.getTime()/ (24 * 60 * 60 * 1000))-(enddate.getTime()/ (24 * 60 * 60 * 1000));
+            if(judge>0){
                 Book book=bookDAO.findBookByBookId(rent.getBookId());
-                map.put("name",book.getName());
-                map.put("day",day);
+                map.put("bookName",book.getName());
                 overlist.add(map);
             }
+
+
         }
         return overlist;
     }
+
+    //返回个人所有逾期借阅情况
+    /*private List<> allPastdue(){
+        RentDAO rentDAO=new RentDAO();
+        List<Rent> list=rentDAO.allOverRent()
+    }*/
 
     //返回所有逾期借阅情况
     public List<Map> allOverdue(){
@@ -154,4 +155,6 @@ public class RentService {
         }
         return alloverlist;
     }
+
+
 }

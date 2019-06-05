@@ -125,6 +125,7 @@ public class BookService {
         map.put("status",book.getStatus());
         map.put("userId",book.getUserId());
         map.put("imgUrl", book.getImgUrl());
+        map.put("finalDay",book.getFinalDay());
         return map;
     }
 

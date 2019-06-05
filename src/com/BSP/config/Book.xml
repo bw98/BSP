@@ -14,6 +14,7 @@
     <result column="status" jdbcType="TINYINT" property="status"/>
     <result column="userId" jdbcType="INTEGER" property="userId"/>
     <result column="imgUrl" jdbcType="CHAR" property="imgUrl"/>
+    <result column="finalDay" jdbcType="DATE" property="finalDay"/>
   </resultMap>
 
   <!--模糊查找图书-->
@@ -54,8 +55,8 @@
 
   <!--增加图书-->
   <insert id="addBook" parameterType="com.BSP.bean.Book" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO Book(name,type,author,intro,status,userId)
-    VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId})
+    INSERT INTO Book(name,type,author,intro,status,userId,finalDay)
+    VALUES( #{name},#{type},#{author},#{intro},#{status},#{userId},#{finalDay})
   </insert>
 
   <!--修改status( 0在架 1待审核 2已预约 3已借 4下架)-->

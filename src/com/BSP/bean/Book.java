@@ -1,5 +1,7 @@
 package com.BSP.bean;
 
+import java.util.Date;
+
 public class Book {
 	private String name;
 	private String type;
@@ -9,6 +11,15 @@ public class Book {
 	private int id;
 	private int userId;
 	private String imgUrl;
+	private Date finalDay;//上传图书的人想把图书借到何时
+
+	public Date getFinalDay() {
+		return finalDay;
+	}
+
+	public void setFinalDay(Date finalDay) {
+		this.finalDay = finalDay;
+	}
 
 	public String getName() {
 		return name;

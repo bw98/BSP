@@ -7,7 +7,16 @@ public class Rent {
     private int userId;
     private int bookId;
     private Date beginData;
+    private Date endData;
     private int status;
+
+    public Date getEndData() {
+        return endData;
+    }
+
+    public void setEndData(Date endData) {
+        this.endData = endData;
+    }
 
     public int getId() {
         return id;

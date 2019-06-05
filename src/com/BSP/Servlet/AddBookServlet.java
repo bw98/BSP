@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 
 public class AddBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +37,10 @@ public class AddBookServlet extends HttpServlet {
         String jsonStr = sb.toString();
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
+        //存储图书主人设置的最终时间
+        String finalDay = jsonObject.getString("finalDay");
+        Date finalday = java.sql.Date.valueOf(finalDay);
+
         Book book = new Book();
         Map map = new HashMap();
         int id;
@@ -44,6 +51,8 @@ public class AddBookServlet extends HttpServlet {
             book.setAuthor(jsonObject.getString("author"));
             book.setIntro(jsonObject.getString("intro"));
             book.setStatus(1);
+            book.setFinalDay(finalday);
+
             String jwt = request.getHeader("Authorization");
             Claims c = JWTUtil.parseJWT(jwt);
             UserService userService = new UserService();
@@ -76,6 +85,7 @@ public class AddBookServlet extends HttpServlet {
         }
 
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);

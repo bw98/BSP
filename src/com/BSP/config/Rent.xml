@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Rent">
 
-    <!--预定图书-->
+    <!--借阅图书-->
     <insert id="rentBook" parameterType="com.BSP.bean.Rent" >
-    INSERT INTO Rent(userId,bookId)
-    VALUES(#{userId},#{bookId})
+    INSERT INTO Rent(userId,bookId,endData)
+    VALUES(#{userId},#{bookId},#{endData})
     </insert>
 
-    <!--删除预约记录状态-->
+    <!--删除借阅记录状态-->
     <update id="deleteRent" parameterType="int">
        update Rent set status=1 where id=#{id}
     </update>
