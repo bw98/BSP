@@ -21,15 +21,15 @@ public class OverdueServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
 
 
-        RentService rentService=new RentService();
-        UserService userService=new UserService();
+        RentService rentService = new RentService();
+        UserService userService = new UserService();
 
         try {
             String jwt = request.getHeader("Authorization");
             Claims c = JWTUtil.parseJWT(jwt);
-            int userId=userService.findIdByUserName((String)c.get("user_name"));
-            List list=rentService.overdue(userId);
-            JSONArray jsonArray=JSONArray.fromObject(list);
+            int userId = userService.findIdByUserName((String) c.get("user_name"));
+            List list = rentService.overdue(userId);
+            JSONArray jsonArray = JSONArray.fromObject(list);
             response.getWriter().print(jsonArray);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -39,6 +39,6 @@ public class OverdueServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
+        this.doPost(request, response);
     }
 }

@@ -85,7 +85,6 @@ public class UserDAO {
         SqlSession sqlSession = null;
         try {
             sqlSession = db.getSqlsession();
-            System.out.println("UserDAO's updateUserOnPassword: " + user.getUserName() + " " + user.getPassword() + " " + user.getTel() + " " + user.getStatus());
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             mapper.updateUserOnPassword(user.getUserName(), user.getPassword());
             sqlSession.commit();
@@ -106,7 +105,6 @@ public class UserDAO {
         SqlSession sqlSession = null;
         try {
             sqlSession = db.getSqlsession();
-            System.out.println("UserDAO's updateUserOntel: " + user.getUserName() + " " + user.getPassword() + " " + user.getTel() + " " + user.getStatus());
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             mapper.updateUserOntel(user.getUserName(), user.getTel());
             sqlSession.commit();
@@ -122,10 +120,10 @@ public class UserDAO {
         }
     }
 
-    public User findUserById(int id){
+    public User findUserById(int id) {
         database db = new database();
         SqlSession sqlSession = null;
-        User user=new User();
+        User user = new User();
         try {
             sqlSession = db.getSqlsession();
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
@@ -140,13 +138,14 @@ public class UserDAO {
         return user;
     }
 
-    public void updateUserStatus(int userId,int status){
+    public void updateUserStatus(int id, int status) {
         database db = new database();
         SqlSession sqlSession = null;
         try {
             sqlSession = db.getSqlsession();
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-            mapper.updateUserStatus(userId, status);
+            mapper.updateUserStatus(id, status);
+            sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

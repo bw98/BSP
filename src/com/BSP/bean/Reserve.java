@@ -6,7 +6,7 @@ public class Reserve {
     private int id;
     private int userId;
     private int bookId;
-    private Date beginData;
+    private Date beginDate;
     private int status;
 
     public int getId() {
@@ -33,12 +33,12 @@ public class Reserve {
         this.bookId = bookId;
     }
 
-    public Date getBeginData() {
-        return beginData;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setBeginData(Date beginData) {
-        this.beginData = beginData;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
     public int getStatus() {

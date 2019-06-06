@@ -28,7 +28,7 @@
 
     <update id="updateUserStatus">
             UPDATE User SET status = #{status}
-            where userId = #{userId}
+            where id = #{id}
     </update>
 
     <select id="findAllUser" resultType="com.BSP.bean.User">

@@ -6,8 +6,8 @@
 
     <!--借阅图书-->
     <insert id="rentBook" parameterType="com.BSP.bean.Rent" >
-    INSERT INTO Rent(userId,bookId,endData)
-    VALUES(#{userId},#{bookId},#{endData})
+    INSERT INTO Rent(userId,bookId,endDate)
+    VALUES(#{userId},#{bookId},#{endDate})
     </insert>
 
     <!--删除借阅记录状态-->

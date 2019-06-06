@@ -40,39 +40,39 @@ public class AddRentServlet extends HttpServlet {
         Map<String, String> map = new HashMap<String, String>();
 
         try {
-            Rent rent=new Rent();
-            int bookId=Integer.valueOf(jsonObject.getString("bookId"));
+            Rent rent = new Rent();
+            int bookId = Integer.valueOf(jsonObject.getString("bookId"));
             rent.setBookId(bookId);
             String jwt = request.getHeader("Authorization");
             Claims c = JWTUtil.parseJWT(jwt);
-            UserService userService=new UserService();
-            int userId=userService.findIdByUserName((String)c.get("user_name"));
+            UserService userService = new UserService();
+            int userId = userService.findIdByUserName((String) c.get("user_name"));
             rent.setUserId(userId);
 
             //图书到期时间（借书日期加借书时长）
             String endDay = jsonObject.getString("endDay");
             Date endday = java.sql.Date.valueOf(endDay);
-            rent.setEndData(endday);
+            rent.setEndDate(endday);
 
-            RentService rentService =new RentService();
-            boolean status=rentService.rent(rent);
-            if(status==true){
+            RentService rentService = new RentService();
+            boolean status = rentService.rent(rent);
+            if (status == true) {
                 map.put("status", "true");
                 JSONObject jsonMap = JSONObject.fromObject(map);
-                response .getWriter().print(jsonMap);
-            }else{
-                    map.put("status", "false");
-                    JSONObject jsonMap = JSONObject.fromObject(map);
-                    response .getWriter().print(jsonMap);
-                }
+                response.getWriter().print(jsonMap);
+            } else {
+                map.put("status", "false");
+                JSONObject jsonMap = JSONObject.fromObject(map);
+                response.getWriter().print(jsonMap);
+            }
         } catch (Exception e) {
             map.put("status", "false");
             JSONObject jsonMap = JSONObject.fromObject(map);
-            response .getWriter().print(jsonMap);
+            response.getWriter().print(jsonMap);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
+        this.doPost(request, response);
     }
 }

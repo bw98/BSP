@@ -6,16 +6,16 @@ public class Rent {
     private int id;
     private int userId;
     private int bookId;
-    private Date beginData;
-    private Date endData;
+    private Date beginDate;
+    private Date endDate;
     private int status;
 
-    public Date getEndData() {
-        return endData;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndData(Date endData) {
-        this.endData = endData;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public int getId() {
@@ -42,12 +42,12 @@ public class Rent {
         this.bookId = bookId;
     }
 
-    public Date getBeginData() {
-        return beginData;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setBeginData(Date beginData) {
-        this.beginData = beginData;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
     }
 
     public int getStatus() {
