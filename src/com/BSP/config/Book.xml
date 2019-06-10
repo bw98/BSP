@@ -60,9 +60,14 @@
   </insert>
 
   <!--修改status( 0在架 1待审核 2已预约 3已借 4下架)-->
-  <update id="deleteBook" parameterType="java.util.Map">
+  <update id="updateBook" parameterType="java.util.Map">
     update Book set status=#{status} where id=#{id}
   </update>
+
+  <!--根据id查找书籍(悲观锁版)-->
+  <select id="findByLock" parameterType="int" resultMap="Book">
+    select * from Book where id=#{id} for update
+  </select>
 
   <!--修改图书-->
   <update id="updateBook" parameterType="com.BSP.bean.Book">
