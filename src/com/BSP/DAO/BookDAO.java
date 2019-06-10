@@ -172,7 +172,7 @@ public class BookDAO {
         map.put("status",status);
         try {
             sqlSession=DB.getSqlsession();
-            sqlSession.update("Book.updateBook",map);
+            sqlSession.update("Book.deleteBook",map);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
@@ -194,7 +194,7 @@ public class BookDAO {
         try {
             sqlSession=DB.getSqlsession();
             sqlSession.selectOne("Book.findByLock",id);
-            sqlSession.update("Book.updateBook",map);
+            sqlSession.update("Book.deleteBook",map);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();

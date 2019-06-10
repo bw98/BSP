@@ -60,7 +60,7 @@
   </insert>
 
   <!--修改status( 0在架 1待审核 2已预约 3已借 4下架)-->
-  <update id="updateBook" parameterType="java.util.Map">
+  <update id="deleteBook" parameterType="java.util.Map">
     update Book set status=#{status} where id=#{id}
   </update>
 
