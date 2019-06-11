@@ -20,12 +20,21 @@
         select * from Reserve where id=#{id}
     </select>
 
-    <!--根据userid查找用户自己的记录-->
+    <!--根据userId查找用户自己的记录-->
     <select id="findReserveByUserId" parameterType="int" resultType="com.BSP.bean.Reserve">
-        select * from Reserve where userId=#{userId} and status=0
+        select * from Reserve where userId=#{bookId} and status=0
     </select>
 
-    <!--根据userid查找需要通知的记录-->
+    <!--根据bookId查找该书正在被预约的记录-->
+    <select id="findCurrentReserveByBookId" parameterType="int" resultType="com.BSP.bean.Reserve">
+        SELECT a.id as bookId, b.userId as userId, b.id as id, b.endDate as endDate, b.status as status, b.noticeStatus as noticeStatus
+		FROM Book as a
+		LEFT JOIN Reserve as b on a.id = b.bookId
+		WHERE a.id = #{bookId} and a.status = 2;
+    </select>
+
+
+    <!--根据userId查找需要通知的记录-->
     <select id="findNotice" parameterType="int" resultType="com.BSP.bean.Reserve">
         select * from Reserve where userId=#{userId} and noticeStatus=0
     </select>
@@ -33,6 +42,21 @@
     <!--删除通知状态-->
     <update id="deleteNotice" parameterType="int">
        update Reserve set noticeStatus=1 where id=#{id}
+    </update>
+
+    <!--更新记录的status-->
+    <update id="updateStatus" parameterType="com.BSP.bean.Reserve">
+       update Reserve set status=#{status} where id=#{id}
+    </update>
+
+    <!--更新记录的noticeStatus-->
+    <update id="updateNoticeStatus" parameterType="com.BSP.bean.Reserve">
+       update Reserve set noticeStatus=#{noticeStatus} where id=#{id}
+    </update>
+
+    <!--更新记录的FinalStatus-->
+    <update id="updateFinalStatus" parameterType="com.BSP.bean.Reserve">
+       update Reserve set finalStatus=#{finalStatus} where id=#{id}
     </update>
 
 </mapper>

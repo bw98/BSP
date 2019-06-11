@@ -37,11 +37,14 @@ public class CollectionService {
             Map<String, String> map = new HashMap<>();
             int bookId = c.getBookId();
             Book book = bookDAO.findBookByBookId(bookId);
-            map.put("bookId", Integer.toString(bookId));
-            map.put("bookName", book.getName());
-            map.put("author", book.getAuthor());
-            map.put("status", Integer.toString(book.getStatus()));
-            list.add(map);
+            //收藏列表不显示待审核与已下架的图书
+            if ((book.getStatus()!=1) && (book.getStatus() != 4)) {
+                map.put("bookId", Integer.toString(bookId));
+                map.put("bookName", book.getName());
+                map.put("author", book.getAuthor());
+                map.put("status", Integer.toString(book.getStatus()));
+                list.add(map);
+            }
         }
         return list;
     }

@@ -176,6 +176,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>notice</servlet-name>
+        <servlet-class>com.BSP.Servlet.NoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notice</servlet-name>
+        <url-pattern>/notice</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>allrent</servlet-name>
         <servlet-class>com.BSP.Servlet.AllRentServlet</servlet-class>
     </servlet>

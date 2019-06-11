@@ -13,6 +13,10 @@ public class Book {
 	private String imgUrl;
 	private Date finalDay;//上传图书的人想把图书借到何时
 
+	public Book () {
+
+	}
+
 	public Date getFinalDay() {
 		return finalDay;
 	}

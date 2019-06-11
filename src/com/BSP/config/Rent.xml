@@ -35,4 +35,9 @@
         select * from Rent where userId=#{userId} and bookId=#{bookId} and status=0
     </select>
 
+    <!--根据bookId查找记录-->
+    <select id="findRentByBookId" parameterType="int" resultType="com.BSP.bean.Rent">
+        select * from Rent where bookId=#{bookId} and status=0
+    </select>
+
 </mapper>

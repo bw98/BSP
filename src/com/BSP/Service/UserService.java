@@ -86,4 +86,15 @@ public class UserService {
 
     }
 
+    public boolean updateUserStatus(User user, int status) {
+        UserDAO userDAO = new UserDAO();
+        User u = userDAO.findUserByName(user);
+
+        if (u == null) {
+            return false;
+        }
+        userDAO.updateUserStatus(user.getId(), status);
+        return true;
+    }
+
 }

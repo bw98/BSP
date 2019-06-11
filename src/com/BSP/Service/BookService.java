@@ -59,6 +59,7 @@ public class BookService {
     public boolean deleteBook(int id){
         BookDAO bookDAO=new BookDAO();
         if(bookDAO.findBookByBookId(id)!=null){
+            //图书状态为0（）时才能直接下架，否则不能下架
             bookDAO.updateBookStatus(id,4);
         }else{
             return false;
@@ -139,8 +140,10 @@ public class BookService {
             map.put("name",book.getName());
             map.put("status",book.getStatus());
             map.put("bookId",book.getId());
+            map.put("finalDay", book.getFinalDay());
             alllist.add(map);
         }
         return alllist;
     }
+
 }

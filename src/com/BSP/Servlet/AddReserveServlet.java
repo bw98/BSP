@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,23 +38,35 @@ public class AddReserveServlet extends HttpServlet {
         Map<String, String> map = new HashMap<String, String>();
 
         try {
-            Reserve reserve=new Reserve();
+            Reserve reserve = new Reserve();
             reserve.setBookId(Integer.valueOf(jsonObject.getString("bookId")));
             String jwt = request.getHeader("Authorization");
             Claims c = JWTUtil.parseJWT(jwt);
-            UserService userService=new UserService();
-            int userId=userService.findIdByUserName((String)c.get("user_name"));
+            UserService userService = new UserService();
+            int userId = userService.findIdByUserName((String) c.get("user_name"));
             reserve.setUserId(userId);
-            ReserveService reserveService=new ReserveService();
-            reserveService.reserve(reserve);
-            map.put("status", "true");
-            JSONObject jsonMap = JSONObject.fromObject(map);
-            response .getWriter().print(jsonMap);
+
+            //设置图书归还时间
+            Date endDate = java.sql.Date.valueOf(jsonObject.getString("endDate"));
+            reserve.setEndDate(endDate);
+
+            ReserveService reserveService = new ReserveService();
+            int status = reserveService.reserve(reserve);
+
+            if (status == 0) {
+                map.put("status", Integer.toString(status));
+                JSONObject jsonMap = JSONObject.fromObject(map);
+                response.getWriter().print(jsonMap);
+            } else {
+                map.put("status", Integer.toString(status));
+                JSONObject jsonMap = JSONObject.fromObject(map);
+                response.getWriter().print(jsonMap);
+            }
         } catch (NumberFormatException e) {
             map.put("status", "false");
-            map.put("error",e.getMessage());
+            map.put("error", e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);
-            response .getWriter().print(jsonMap);
+            response.getWriter().print(jsonMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,6 +74,6 @@ public class AddReserveServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
+        this.doPost(request, response);
     }
 }

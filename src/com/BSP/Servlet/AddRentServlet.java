@@ -49,10 +49,9 @@ public class AddRentServlet extends HttpServlet {
             int userId = userService.findIdByUserName((String) c.get("user_name"));
             rent.setUserId(userId);
 
-            //图书到期时间（借书日期加借书时长）
-            String endDay = jsonObject.getString("endDay");
-            Date endday = java.sql.Date.valueOf(endDay);
-            rent.setEndDate(endday);
+            //设置图书归还时间
+            Date endDate = java.sql.Date.valueOf(jsonObject.getString("endDate"));
+            rent.setEndDate(endDate);
 
             RentService rentService = new RentService();
             boolean status = rentService.rent(rent);

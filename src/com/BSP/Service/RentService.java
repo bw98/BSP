@@ -63,15 +63,14 @@ public class RentService {
             Map map = new HashMap();
             Rent rent = (Rent) list.get(i);
             Book book = bookDAO.findBookByBookId(rent.getBookId());
-            Date endDay=rent.getEndDate();
+            Date endDate = rent.getEndDate();
             map.put("bookId", book.getId());
             map.put("bookName", book.getName());
-            map.put("endDay", endDay);
+            map.put("endDate", endDate);
             list1.add(map);
         }
         return list1;
     }
-
 
     public List<Map> overdue(int userId) throws ParseException {
         int overdue_flag = 0;//标志位，如果有逾期则为1，没有则为0
