@@ -75,5 +75,22 @@ public class ReserveDAO {
         return list;
     }
 
+    //根据id查找通知
+    public List<Reserve> allNotice(int userId){
+        SqlSession sqlSession=null;
+        List<Reserve> list = new ArrayList<Reserve>();
+        try {
+            sqlSession=DB.getSqlsession();
+            list=sqlSession.selectList("Reserve.findNotice",userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return list;
+    }
+
 
 }

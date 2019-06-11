@@ -2,8 +2,11 @@ package com.BSP.Service;
 
 import com.BSP.DAO.BookDAO;
 import com.BSP.DAO.ReserveDAO;
+import com.BSP.DAO.UserDAO;
 import com.BSP.bean.Book;
 import com.BSP.bean.Reserve;
+import com.BSP.bean.User;
+import jdk.internal.vm.annotation.ReservedStackAccess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,12 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 public class ReserveService {
-    public boolean reserve(Reserve reserve){
+    public boolean reserve(Reserve reserve)throws Exception{
         BookDAO bookDAO =new BookDAO();
         ReserveDAO reserveDAO=new ReserveDAO();
         Book book = bookDAO.findBookByBookId(reserve.getBookId());
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.findUserById(reserve.getUserId());
         //被借阅时才能预定
-        if(book.getStatus()==3){
+        if(book.getStatus()==3 && user.getStatus() != 2){
             reserveDAO.addReserve(reserve);
             //设置书为"已预约"状态
             bookDAO.updateBookStatus(reserve.getBookId(),2);
@@ -24,6 +29,14 @@ public class ReserveService {
             return false;
         }
         return true;
+    }
+
+    public void notice(Reserve reserve){
+        ReserveDAO reserveDAO=new ReserveDAO();
+        List<Reserve> list=new ArrayList<Reserve>();
+        reserveDAO.allNotice(reserve.getUserId());
+
+
     }
 
     public boolean deleteReserve(int id){

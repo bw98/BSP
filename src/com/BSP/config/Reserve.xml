@@ -6,8 +6,8 @@
 
     <!--预定图书-->
     <insert id="reserveBook" parameterType="com.BSP.bean.Reserve" >
-    INSERT INTO Reserve(userId,bookId)
-    VALUES( #{userId},#{bookId})
+    INSERT INTO Reserve(userId,bookId,endDate)
+    VALUES( #{userId},#{bookId},#{endDate})
     </insert>
 
     <!--删除预约记录状态-->
@@ -24,6 +24,16 @@
     <select id="findReserveByUserId" parameterType="int" resultType="com.BSP.bean.Reserve">
         select * from Reserve where userId=#{userId} and status=0
     </select>
+
+    <!--根据userid查找需要通知的记录-->
+    <select id="findNotice" parameterType="int" resultType="com.BSP.bean.Reserve">
+        select * from Reserve where userId=#{userId} and noticeStatus=0
+    </select>
+
+    <!--删除通知状态-->
+    <update id="deleteNotice" parameterType="int">
+       update Reserve set noticeStatus=1 where id=#{id}
+    </update>
 
 </mapper>
 
