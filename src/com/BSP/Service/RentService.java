@@ -59,22 +59,14 @@ public class RentService {
         BookDAO bookDAO = new BookDAO();
         List list1 = new ArrayList();
 
-
         for (int i = 0; i < list.size(); i++) {
             Map map = new HashMap();
             Rent rent = (Rent) list.get(i);
             Book book = bookDAO.findBookByBookId(rent.getBookId());
+            Date endDay=rent.getEndDate();
             map.put("bookId", book.getId());
             map.put("bookName", book.getName());
-
-            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c = Calendar.getInstance();
-
-            Date date = rent.getBeginDate();
-            c.setTime(date);
-            c.add(Calendar.DATE, 30);
-            Date deadline = c.getTime();//到期时间
-            map.put("day", sf.format(deadline));
+            map.put("endDay", endDay);
             list1.add(map);
         }
         return list1;
