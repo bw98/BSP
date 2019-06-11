@@ -6,7 +6,6 @@ import com.BSP.DAO.UserDAO;
 import com.BSP.bean.Book;
 import com.BSP.bean.Reserve;
 import com.BSP.bean.User;
-import jdk.internal.vm.annotation.ReservedStackAccess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,12 +30,16 @@ public class ReserveService {
         return true;
     }
 
-    public void notice(Reserve reserve){
+    //通知
+    public List notice(int userid){
         ReserveDAO reserveDAO=new ReserveDAO();
-        List<Reserve> list=new ArrayList<Reserve>();
-        reserveDAO.allNotice(reserve.getUserId());
-
-
+        List<Reserve> list=reserveDAO.allNotice(userid);
+        for(int i=0;i<list.size();i++){
+            Reserve reserve=list.get(i);
+            //通知后使其失效
+            reserveDAO.deleteNotice(reserve.getId());
+        }
+        return list;
     }
 
     public boolean deleteReserve(int id){

@@ -10,7 +10,7 @@ public class Reserve {
     private Date endDate;
     private int status;//0为正常，1为该记录失效
     private int noticeStatus;//预约通知位，0为未通知，1为已通知
-    private int finalStatus;//0为预约成功，1为预约失败
+    private int finalStatus;//0为续借成功，1为续借失败
 
     public int getNoticeStatus() {
         return noticeStatus;

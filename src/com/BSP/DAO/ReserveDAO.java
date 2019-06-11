@@ -92,5 +92,23 @@ public class ReserveDAO {
         return list;
     }
 
+    //删除通知（失效）
+    public List<Reserve> deleteNotice(int Id){
+        SqlSession sqlSession=null;
+        List<Reserve> list = new ArrayList<Reserve>();
+        try {
+            sqlSession=DB.getSqlsession();
+            sqlSession.update("Reserve.deleteNotice",Id);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(sqlSession!=null){
+                sqlSession.close();
+            }
+        }
+        return list;
+    }
+
 
 }
