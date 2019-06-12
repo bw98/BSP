@@ -1,9 +1,8 @@
 package com.BSP.Servlet;
 
 import com.BSP.Service.RentService;
-import com.BSP.Util.JsonDateValueProcessor;
+import com.BSP.Util.JsonDateValueProcessor2;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 import javax.servlet.ServletException;
@@ -23,7 +22,7 @@ public class AllOverdueServlet extends HttpServlet {
         RentService rentService=new RentService();
         List list=rentService.allOverdue();
         JsonConfig config = new JsonConfig();
-        JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
+        JsonDateValueProcessor2 jsonDateValueProcessor = new JsonDateValueProcessor2();
         config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
         String json = JSONArray.fromObject(list, config).toString();
         response.getWriter().print(json);

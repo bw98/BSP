@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class jsonDateProcessor implements JsonValueProcessor {
+public class JsonDateValueProcessor2 implements JsonValueProcessor {
     private String pattern = "yyyy-MM-dd";
 
     public Object processArrayValue(Object value, JsonConfig config) {

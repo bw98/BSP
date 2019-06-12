@@ -48,7 +48,6 @@ public class PageServlet extends HttpServlet {
         PageService pageService = new PageService();
         Page page = pageService.findbookbypage(pagenum, pagesize);
         List<Book> list = page.getList();
-        BookService bookService=new BookService();
         String json = JSONArray.fromObject(list).toString();
         response.getWriter().print(json);
     }
