@@ -19,7 +19,7 @@
 
   <!--模糊查找图书-->
   <select id="searchbook" parameterType="com.BSP.bean.Book" resultMap="Book">
-    select * from Book where name like '%${name}%' and status=0 or status=2 or status=3
+    select * from Book where name like '%${name}%' and (status=0 or status=2 or status=3)
   </select>
 
   <!--查找所有待审核图书-->

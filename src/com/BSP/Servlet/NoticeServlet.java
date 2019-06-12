@@ -3,8 +3,10 @@ package com.BSP.Servlet;
 import com.BSP.Service.ReserveService;
 import com.BSP.Service.UserService;
 import com.BSP.Util.JWTUtil;
+import com.BSP.Util.JsonDateValueProcessor;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NoticeServlet extends HttpServlet {
@@ -33,7 +36,10 @@ public class NoticeServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String json = JSONArray.fromObject(list).toString();
+        JsonConfig config = new JsonConfig(); //通过工具类实现DateTime的格式化，以方便前端显示
+        JsonDateValueProcessor jsonDateValueProcessor = new JsonDateValueProcessor();
+        config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
+        String json = JSONArray.fromObject(list, config).toString();
         response.getWriter().print(json);
 
     }
