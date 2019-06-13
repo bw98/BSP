@@ -35,7 +35,7 @@
 
   <!--分页展示书籍-->
   <select id="page" parameterType="java.util.Map" resultMap="Book">
-    select * from Book limit #{startindex} , #{pagesize}
+    select * from Book limit #{startindex} , #{pagesize} where status=0
   </select>
 
   <!--查找所有书籍-->

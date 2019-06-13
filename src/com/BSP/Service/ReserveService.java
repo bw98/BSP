@@ -81,6 +81,7 @@ public class ReserveService {
             map.put("bookId", book.getId());
             map.put("bookName", book.getName());
             map.put("status", book.getStatus());
+            map.put("endDay",reserve.getEndDate());
             list1.add(map);
         }
         return list1;

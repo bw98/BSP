@@ -1,9 +1,11 @@
 package com.BSP.Service;
 
 import com.BSP.DAO.BookDAO;
+import com.BSP.DAO.RentDAO;
 import com.BSP.DAO.UserDAO;
 import com.BSP.Util.ImgBinUtil;
 import com.BSP.bean.Book;
+import com.BSP.bean.Rent;
 import com.BSP.bean.User;
 
 import java.util.ArrayList;
@@ -114,8 +116,10 @@ public class BookService {
     public Map findBookById(int id){
         BookDAO bookDAO=new BookDAO();
         UserDAO userDAO=new UserDAO();
+        RentDAO rentDAO=new RentDAO();
         Book book=bookDAO.findBookByBookId(id);
         User user=userDAO.findUserById(book.getUserId());
+        Rent rent=rentDAO.findRentByBookId(book.getId());
         Map map=new HashMap();
 
         map.put("bookName",book.getName());
@@ -127,6 +131,7 @@ public class BookService {
         map.put("userId",book.getUserId());
         map.put("imgUrl", book.getImgUrl());
         map.put("finalDay",book.getFinalDay());
+        map.put("endDay",rent.getEndDate());
         return map;
     }
 
