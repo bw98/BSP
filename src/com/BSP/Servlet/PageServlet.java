@@ -42,12 +42,7 @@ public class PageServlet extends HttpServlet {
         JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 
         int pagenum = Integer.valueOf(jsonObject.getString("page"));
-        int pagesize;
-        if(pagenum==1){
-            pagesize = 8;
-        }else{
-            pagesize = 9;
-        }
+        int pagesize=8;
         PageService pageService = new PageService();
         Page page = pageService.findbookbypage(pagenum, pagesize);
         List<Book> list = page.getList();
