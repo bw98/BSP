@@ -46,7 +46,7 @@ http://zhongqw.online/
 - 设计了纪完整且稳定的借阅预约逻辑
 
 ## 前端代码
-链接：https://github.com/ZhongQW/XiyouBookSystem_web
+链接：https://github.com/ZhongQW/xiyou_shareBook
 
 ## 感悟
 这次和小伙伴利用 git 一起进行版本控制，熬过了未解决冲突就 add 的艰难时刻（笑，让我对 git 的各种操作有了更全面的理解，比如本地，工作区，add，commit，暂存区，cache，merge&pull 等理解都更深入了；对 java web 的前后端分离有了清晰的认识；最后感谢我们组百忙之中抽出时间做大作业的前端美女和逻辑缜密的后端小伙伴，你们都很棒~
