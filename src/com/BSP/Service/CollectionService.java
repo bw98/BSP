@@ -22,7 +22,7 @@ public class CollectionService {
         }
     }
 
-    public void deleteCollection(Collection collection) {
+    public void deleteCollection(Collection collection) throws Exception {
         CollectionDAO collectionDAO = new CollectionDAO();
         collectionDAO.deleteCollection(collection);
     }

@@ -62,12 +62,11 @@ public class AddReserveServlet extends HttpServlet {
                 JSONObject jsonMap = JSONObject.fromObject(map);
                 response.getWriter().print(jsonMap);
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             map.put("status", "false");
             map.put("error", e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);
             response.getWriter().print(jsonMap);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 

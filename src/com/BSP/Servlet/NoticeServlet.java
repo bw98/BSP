@@ -23,16 +23,15 @@ public class NoticeServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-        ReserveService reserveService=new ReserveService();
-        UserService userService=new UserService();
+        ReserveService reserveService = new ReserveService();
+        UserService userService = new UserService();
 
-
-        List list=new ArrayList();
+        List list = new ArrayList();
         try {
             String jwt = request.getHeader("Authorization");
             Claims c = JWTUtil.parseJWT(jwt);
             int userId = userService.findIdByUserName((String) c.get("user_name"));
-            list=reserveService.notice(userId);
+            list = reserveService.notice2(userId); //使用新版notice，仅返回bookName和finalStatus
         } catch (Exception e) {
             e.printStackTrace();
         }

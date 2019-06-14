@@ -103,8 +103,8 @@ public class BookService {
             return null;
         }
 
-//        String savePath = "/usr/java/tomcat/apache-tomcat-9.0.13/webapps/BSP/BookPhoto/" + bookId + ".jpg";  //zqw服务器使用
-        String savePath = projRealPath + "web/BookPhoto/" + bookId + ".jpg"; //本地测试使用
+        String savePath = "/usr/java/tomcat/apache-tomcat-9.0.13/webapps/BSP/BookPhoto/" + bookId + ".jpg";  //zqw服务器使用
+//        String savePath = projRealPath + "web/BookPhoto/" + bookId + ".jpg"; //本地测试使用
         String savePath2 = "/BookPhoto/" + bookId + ".jpg";
         System.out.println(savePath);
         ImgBinUtil.base64StringToImage(imgBin,savePath);
@@ -119,7 +119,7 @@ public class BookService {
         RentDAO rentDAO=new RentDAO();
         Book book=bookDAO.findBookByBookId(id);
         User user=userDAO.findUserById(book.getUserId());
-        Rent rent=rentDAO.findRentByBookId(book.getId());
+        Rent rent=rentDAO.findRentByBookId(book.getId()); //如果本书有借阅的话，得到借阅对象
         Map map=new HashMap();
 
         map.put("bookName",book.getName());
@@ -131,7 +131,9 @@ public class BookService {
         map.put("userId",book.getUserId());
         map.put("imgUrl", book.getImgUrl());
         map.put("finalDay",book.getFinalDay());
-        map.put("endDay",rent.getEndDate());
+        if (rent != null) { //不一定有借阅，所以可能会空指针
+            map.put("endDate", rent.getEndDate()); //得到当前借阅者的最晚还书时间
+        }
         return map;
     }
 

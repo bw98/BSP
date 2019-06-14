@@ -39,13 +39,12 @@ public class AllReserveServlet extends HttpServlet {
             config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
             String json = JSONArray.fromObject(list, config).toString();
             response .getWriter().print(json);
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("status", "false");
             map.put("error",e.getMessage());
             JSONObject jsonMap = JSONObject.fromObject(map);
             response .getWriter().print(jsonMap);
-        } catch (Exception e) {
             e.printStackTrace();
         }
 

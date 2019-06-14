@@ -58,6 +58,25 @@ public class ReserveService {
         return list;
     }
 
+    //带书名的通知
+    public List notice2(int userId) {
+        ReserveDAO reserveDAO = new ReserveDAO();
+        BookDAO bookDAO = new BookDAO();
+        List<Reserve> reserveList = reserveDAO.allNotice(userId);
+        List<Map> resultList = new ArrayList<Map>();
+        for (int i = 0; i < reserveList.size(); i++) {
+            Reserve reserve = reserveList.get(i);
+            Book book = bookDAO.findBookByBookId(reserve.getBookId());
+            Map map = new HashMap();
+            map.put("bookName",book.getName());
+            map.put("finalStatus", reserve.getFinalStatus());
+            resultList.add(map);
+            //通知后使其失效
+            reserveDAO.deleteNotice(reserve.getId());
+        }
+        return resultList;
+    }
+
     public boolean deleteReserve(int id) {
         ReserveDAO reserveDAO = new ReserveDAO();
         if (reserveDAO.findReserveById(id) != null) {
@@ -68,9 +87,10 @@ public class ReserveService {
         return true;
     }
 
-    public List<Map> allReserve(int userId) {
+    public List<Map> allReserve(int userId) throws Exception {
         ReserveDAO reserveDAO = new ReserveDAO();
         BookDAO bookDAO = new BookDAO();
+        RentDAO rentDAO = new RentDAO();
         List list = reserveDAO.allReserve(userId);
         List list1 = new ArrayList();
 
@@ -78,10 +98,11 @@ public class ReserveService {
             Map map = new HashMap();
             Reserve reserve = (Reserve) list.get(i);
             Book book = bookDAO.findBookByBookId(reserve.getBookId());
+            Rent rent = rentDAO.findRentByBookId(reserve.getBookId());
             map.put("bookId", book.getId());
             map.put("bookName", book.getName());
             map.put("status", book.getStatus());
-            map.put("endDay",reserve.getEndDate());
+            map.put("endDate",rent.getEndDate());
             list1.add(map);
         }
         return list1;

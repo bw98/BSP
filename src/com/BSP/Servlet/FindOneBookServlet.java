@@ -36,10 +36,13 @@ public class FindOneBookServlet extends HttpServlet {
         BookService bookService =new BookService();
         Map map=bookService.findBookById(bookId);
 
+//        JSONObject jsonObject1=JSONObject.fromObject(map);
+//        response.getWriter().print(jsonObject1);
+
         JsonConfig config = new JsonConfig(); //通过工具类实现DateTime的格式化，以方便前端显示
         JsonDateValueProcessor2 jsonDateValueProcessor = new JsonDateValueProcessor2();
         config.registerJsonValueProcessor(Date.class, jsonDateValueProcessor);
-        String json = JSONObject.fromObject(map, config).toString();
+        String json = JSONArray.fromObject(map, config).toString();
 
         response.getWriter().print(json);
     }

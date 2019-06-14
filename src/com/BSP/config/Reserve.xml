@@ -22,7 +22,7 @@
 
     <!--根据userId查找用户自己的记录-->
     <select id="findReserveByUserId" parameterType="int" resultType="com.BSP.bean.Reserve">
-        select * from Reserve where userId=#{bookId} and status=0
+        select * from Reserve where userId=#{userId} and status=0
     </select>
 
     <!--根据bookId查找该书正在被预约的记录-->
@@ -30,13 +30,13 @@
         SELECT a.id as bookId, b.userId as userId, b.id as id, b.endDate as endDate, b.status as status, b.noticeStatus as noticeStatus
 		FROM Book as a
 		LEFT JOIN Reserve as b on a.id = b.bookId
-		WHERE a.id = #{bookId} and a.status = 2;
+		WHERE a.id = #{bookId} and a.status = 2 and b.status = 0;
     </select>
 
 
     <!--根据userId查找需要通知的记录-->
     <select id="findNotice" parameterType="int" resultType="com.BSP.bean.Reserve">
-        select * from Reserve where userId=#{userId} and noticeStatus=0
+        select * from Reserve where userId=#{userId} and noticeStatus=0 and finalStatus is not null
     </select>
 
     <!--删除通知状态-->
