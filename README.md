@@ -43,7 +43,7 @@ http://zhongqw.online/
 - 使用了阿里druid--mysql数据库线程池
 - 利用过滤器实现了跨域和token申请验证
 - 利用mysql的Innodb引擎提供的悲观锁（行级锁）解决了多人同时借阅一本书时的并发问题
-- 设计了纪完整且稳定的借阅预约逻辑
+- 设计了完整且鲁棒的借阅预约逻辑
 
 ## 前端代码
 链接：https://github.com/ZhongQW/xiyou_shareBook
