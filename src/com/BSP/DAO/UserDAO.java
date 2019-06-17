@@ -66,7 +66,7 @@ public class UserDAO {
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             mapper.addUser(user);
             sqlSession.commit();
-            // 如果添加user后需要返回id，可以把method type改成int并取消下一行的注释
+            // 如果添加user后需要返回id，可以把方法类型改成int并取消下一行的注释
             // return user.getId();
         } catch (Exception e) {
             if (sqlSession != null) {

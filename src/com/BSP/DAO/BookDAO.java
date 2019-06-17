@@ -185,15 +185,15 @@ public class BookDAO {
         return true;
     }
 
-    //借阅图书并发修改status( 0在架 1待审核 2已预约 3已借 4下架)
-    public boolean fingAndUpdateBook(int id,int status){
+    //借阅与预约图书并发修改status( 0在架 1待审核 2已预约 3已借 4下架)
+    public boolean updateBookUnderLock(int id,int status) {
         SqlSession sqlSession=null;
         Map map=new HashMap();
         map.put("id",id);
         map.put("status",status);
         try {
             sqlSession=DB.getSqlsession();
-            sqlSession.selectOne("Book.findByLock",id);
+            sqlSession.selectOne("Book.findBookByIdUnderLock",id);
             sqlSession.update("Book.deleteBook",map);
             sqlSession.commit();
         } catch (IOException e) {

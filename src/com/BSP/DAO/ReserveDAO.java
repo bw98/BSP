@@ -1,11 +1,14 @@
 package com.BSP.DAO;
 
+import com.BSP.bean.Book;
 import com.BSP.bean.Reserve;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReserveDAO {
     database DB = new database();
@@ -24,6 +27,35 @@ public class ReserveDAO {
                 sqlSession.close();
             }
         }
+    }
+
+    //在加锁的情况下增加预约记录并修改图书的状态，可能会存在多人同时预约时其他人先约到而导致失败的情况
+    //参数id是图书id
+    //参数status是想要修改的图书状态
+    public boolean addReserveUnderLock(Reserve reserve, int id, int status) {
+        SqlSession sqlSession = null;
+        Map map=new HashMap();
+        map.put("id", id);
+        map.put("status", status);
+        try {
+            sqlSession = DB.getSqlsession();
+            Book currentBook = sqlSession.selectOne("Book.findBookByIdUnderLock", id);
+            if (currentBook.getStatus() == 3) {//图书状态为借阅时图书才能被预约
+                sqlSession.insert("Reserve.reserveBook", reserve);
+                sqlSession.update("Book.deleteBook",map);
+            } else {
+                throw new Exception("预约时图书状态已经被改了");
+            }
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return true;
     }
 
     //删除预约

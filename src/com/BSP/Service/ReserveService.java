@@ -21,17 +21,25 @@ public class ReserveService {
         RentDAO rentDAO = new RentDAO();
         Rent rent = rentDAO.findRentByBookId(reserve.getBookId());
 
-        //4个判断条件判断图书是否能被预约
+        //预约成功返回0。预约失败的话有四种情况：
+        //1、图书状态非借阅，无法预约，此时返回值为1；
+        //2、逾期的用户不能预约，此时返回值为2；
+        //3、预约时的endDate晚于图书上传者规定的finalDay，此时返回值为3；
+        //4、预约时的endDate早于借书者的endDate，此时返回值为4
         if (book.getStatus() == 3) { //书被借阅时才能预约
             if(user.getStatus() != 2) {
                 long judge = (reserve.getEndDate().getTime() / (24 * 60 * 60 * 1000)) - (book.getFinalDay().getTime() / (24 * 60 * 60 * 1000));
                 if (judge < 0) {
                     long res = (reserve.getEndDate().getTime() / (24 * 60 * 60 * 1000)) - (rent.getEndDate().getTime() / (24 * 60 * 60 * 1000));
                     if (res > 0) {
-                        reserveDAO.addReserve(reserve);
-                        //设置书为"已预约"状态
-                        bookDAO.updateBookStatus(reserve.getBookId(), 2);
-                        return 0;
+                        //给图书加锁、预约并设置书为"已预约"状态
+                        boolean returnFlag = reserveDAO.addReserveUnderLock(reserve, reserve.getBookId(), 2);
+                        if (returnFlag) {
+                            return 0; //预约成功
+                        }
+                        else {
+                            return 1; //存在并发问题，比如图书状态突然被改成非借阅而导致无法预约
+                        }
                     } else {
                      return 4; //预约时的endDate早于借书者的endDate
                     }
@@ -42,7 +50,7 @@ public class ReserveService {
                 return 2; //逾期的用户不能预约
             }
         } else {
-            return 1; //图书状态非借阅，无法预约
+            return 1; //存在并发问题，比如图书状态突然被改成非借阅而导致无法预约
         }
     }
 

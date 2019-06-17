@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RentService {
-    public boolean rent(Rent rent)  throws Exception{
+    public boolean rent(Rent rent)  throws Exception {
         BookDAO bookDAO = new BookDAO();
         RentDAO rentDAO = new RentDAO();
         Book book = bookDAO.findBookByBookId(rent.getBookId());
@@ -24,13 +24,16 @@ public class RentService {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.findUserById(rent.getUserId());
         if (book.getStatus() == 0 && judge > 0 && user.getStatus() != 2) {
-            //设置书为"已借出"状态
-            bookDAO.fingAndUpdateBook(rent.getBookId(), 3);
-            rentDAO.addRent(rent);
+            //给图书加锁、借阅并设置书为"已借出"状态
+            boolean returnFlag = rentDAO.addRentUnderLock(rent, rent.getBookId(), 3);
+            if (returnFlag) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
-        return true;
     }
 
     public void back(Rent rent) {

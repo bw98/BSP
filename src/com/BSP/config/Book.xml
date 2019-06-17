@@ -65,7 +65,7 @@
   </update>
 
   <!--根据id查找书籍(悲观锁版)-->
-  <select id="findByLock" parameterType="int" resultMap="Book">
+  <select id="findBookByIdUnderLock" parameterType="int" resultMap="Book">
     select * from Book where id=#{id} for update
   </select>
 
