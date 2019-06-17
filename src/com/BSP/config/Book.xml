@@ -33,9 +33,9 @@
   </select>
 
 
-  <!--分页展示书籍-->
+  <!--分页展示书籍，并把状态为0(在架)的图书优先展示-->
   <select id="page" parameterType="java.util.Map" resultMap="Book">
-    select * from Book where status!=1 and status!=4 limit #{startindex} , #{pagesize}
+    select * from Book where status!=1 and status!=4 order by status limit #{startindex}, #{pagesize}
   </select>
 
   <!--查找所有书籍-->
